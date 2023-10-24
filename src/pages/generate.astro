@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/randomNumber.css';
+import '../styles/globals.css';
+const min = parseInt(Astro.url.searchParams.get('min')!);
+const max = parseInt(Astro.url.searchParams.get('max')!);
+if (isNaN(min) || isNaN(max) || min > max) {
+	return Astro.redirect('/?error');
+}
+---
+
+<Layout>
+	<div>
+		<h1>Il numero casuale tra {min} e {max} è:</h1>
+		<h1>{Math.floor(Math.random() * (max - min + 1) + min)}</h1>
+		<a href=`/?min=${min}&max=${max}`><button>Generate Another</button></a>
+		<a href="/"><button>Change Intervals</button></a>
+	</div>
+</Layout>
