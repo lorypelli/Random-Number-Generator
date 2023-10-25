@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import '../styles/Generator.css';
 import '../styles/globals.css';
+import '../styles/Generator.css';
 const error = Astro.url.searchParams.has('error');
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
@@ -14,8 +14,8 @@ if (!isNaN(min) || !isNaN(max) || min < max) {
 	{error && <h1 id="error">There was an error</h1>}
 	<div>
 		<form action="/generate">
-			<input placeholder="Min Number" autocomplete="off" name="min" />
-			<input placeholder="Max Number" autocomplete="off" name="max" />
+			<input type="number" placeholder="Min Number" autocomplete="off" name="min" />
+			<input type="number" placeholder="Max Number" autocomplete="off" name="max" />
 			<button type="submit">Generate</button>
 		</form>
 	</div>

@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import '../styles/randomNumber.css';
 import '../styles/globals.css';
+import '../styles/randomNumber.css';
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
 if (isNaN(min) || isNaN(max) || min > max) {
