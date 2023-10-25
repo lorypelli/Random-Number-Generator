@@ -14,8 +14,20 @@ if (!isNaN(min) || !isNaN(max) || min < max) {
 	{error && <h1 id="error">There was an error</h1>}
 	<div>
 		<form action="/generate">
-			<input type="number" placeholder="Min Number" autocomplete="off" name="min" />
-			<input type="number" placeholder="Max Number" autocomplete="off" name="max" />
+			<input
+				type="number"
+				placeholder="Min Number"
+				autocomplete="off"
+				name="min"
+				required
+			/>
+			<input
+				type="number"
+				placeholder="Max Number"
+				autocomplete="off"
+				name="max"
+				required
+			/>
 			<button type="submit">Generate</button>
 		</form>
 	</div>
