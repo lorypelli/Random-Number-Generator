@@ -10,9 +10,9 @@ if (isNaN(min) || isNaN(max) || min > max) {
 ---
 
 <Layout>
-	<div>
-		<h1>Il numero casuale tra {min} e {max} è:</h1>
-		<h1>{Math.floor(Math.random() * (max - min + 1) + min)}</h1>
+	<h1>Il numero casuale tra {min} e {max} è:</h1>
+	<h1>{Math.floor(Math.random() * (max - min + 1) + min)}</h1>
+	<div id="buttons">
 		<a href=`/?min=${min}&max=${max}`><button>Generate Another</button></a>
 		<a href="/"><button>Change Intervals</button></a>
 	</div>
