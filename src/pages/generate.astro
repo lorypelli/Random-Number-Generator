@@ -24,7 +24,9 @@ if (
 	</h1>
 	<h1>
 		{mode == 16 ? '0x' : ''}{
-			Math.floor(Math.random() * (max - min + 1) + min).toString(mode).toUpperCase()
+			Math.floor(Math.random() * (max - min + 1) + min)
+				.toString(mode)
+				.toUpperCase()
 		}
 	</h1>
 	<div id="buttons">
