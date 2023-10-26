@@ -13,3 +13,17 @@ button {
     font-size: 45px;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+    #buttons {
+        width: 290px;
+    }
+
+    button {
+        font-size: 40px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+}
