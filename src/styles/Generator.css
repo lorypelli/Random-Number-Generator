@@ -49,7 +49,12 @@ select {
 }
 
 @media only screen and (max-width: 600px) {
-    div, #error {
+    div {
+        height: 300px;
+    }
+
+    div,
+    #error {
         width: 290px;
     }
 
