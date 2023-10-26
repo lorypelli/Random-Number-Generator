@@ -36,3 +36,21 @@ button {
     height: 50px;
     background-color: red;
 }
+
+@media only screen and (max-width: 600px) {
+    div, #error {
+        width: 290px;
+    }
+
+    input {
+        margin: 5px 0
+    }
+
+    button {
+        margin-top: 10px;
+    }
+
+    #error {
+        font-size: 20px;
+    }
+}
