@@ -4,16 +4,33 @@ import '../styles/globals.css';
 import '../styles/randomNumber.css';
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
-if (isNaN(min) || isNaN(max) || min > max) {
+const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 16;
+if (
+	isNaN(min) ||
+	isNaN(max) ||
+	min > max ||
+	isNaN(mode) ||
+	(mode != 10 && mode != 2 && mode != 16)
+) {
 	return Astro.redirect('/?error');
 }
 ---
 
 <Layout>
-	<h1>Il numero casuale tra {min} e {max} è:</h1>
-	<h1>{Math.floor(Math.random() * (max - min + 1) + min)}</h1>
+	<h1>
+		Il numero casuale in base {mode} tra {mode == 16 ? '0x' : ''}{
+			min.toString(mode).toUpperCase()
+		} e {mode == 16 ? '0x' : ''}{max.toString(mode).toUpperCase()} è:
+	</h1>
+	<h1>
+		{mode == 16 ? '0x' : ''}{
+			Math.floor(Math.random() * (max - min + 1) + min).toString(mode).toUpperCase()
+		}
+	</h1>
 	<div id="buttons">
-		<a href=`/?min=${min}&max=${max}`><button>Generate Another</button></a>
+		<a href=`/?mode=${mode}&min=${min}&max=${max}`
+			><button>Generate Another</button></a
+		>
 		<a href="/"><button>Change Intervals</button></a>
 	</div>
 </Layout>

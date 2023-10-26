@@ -5,8 +5,9 @@ import '../styles/Generator.css';
 const error = Astro.url.searchParams.has('error');
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
-if (!isNaN(min) || !isNaN(max) || min < max) {
-	return Astro.redirect(`/generate?min=${min}&max=${max}`);
+const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 16;
+if (!isNaN(min) || !isNaN(max) || min < max || !isNaN(mode) || mode == 10 || mode == 2 || mode == 16) {
+	return Astro.redirect(`/generate?mode=${mode}&min=${min}&max=${max}`);
 }
 ---
 
@@ -14,6 +15,11 @@ if (!isNaN(min) || !isNaN(max) || min < max) {
 	{error && <h1 id="error">There was an error</h1>}
 	<div>
 		<form action="/generate">
+			<select name="mode" required>
+				<option value="10" selected>Decimal</option>
+				<option value="2">Binary</option>
+				<option value="16">Hexadecimal</option>
+			</select>
 			<input
 				type="number"
 				placeholder="Min Number"
