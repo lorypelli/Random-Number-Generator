@@ -4,7 +4,7 @@ div {
     justify-content: center;
     border: 5px solid;
     text-align: center;
-    width: 550px;
+    width: fit-content;
     height: 250px;
     border-radius: 25px;
 }
