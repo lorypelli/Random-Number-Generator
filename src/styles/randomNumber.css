@@ -18,10 +18,12 @@ button {
 
 @media only screen and (max-width: 600px) {
     #buttons {
-        width: 290px;
+        width: 310px;
+        height: 310px;
     }
 
     button {
+        width: 290px;
         font-size: 40px;
     }
 
