@@ -4,13 +4,13 @@ import '../styles/globals.css';
 import '../styles/randomNumber.css';
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
-const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 16;
+const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
 if (
 	isNaN(min) ||
 	isNaN(max) ||
 	min > max ||
 	isNaN(mode) ||
-	(mode != 10 && mode != 2 && mode != 16)
+	(mode != 10 && mode != 2 && mode != 8 && mode != 16)
 ) {
 	return Astro.redirect('/?error');
 }
@@ -33,6 +33,6 @@ if (
 		<a href=`/?mode=${mode}&min=${min}&max=${max}`
 			><button>Generate Another</button></a
 		>
-		<a href="/"><button>Change Intervals</button></a>
+		<a href=`/?mode=${mode}`><button>Change Intervals</button></a>
 	</div>
 </Layout>

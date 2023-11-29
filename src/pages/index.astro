@@ -5,7 +5,7 @@ import '../styles/Generator.css';
 const error = Astro.url.searchParams.has('error');
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
-const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 16;
+const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
 if (
 	!isNaN(min) ||
 	!isNaN(max) ||
@@ -13,6 +13,7 @@ if (
 	!isNaN(mode) ||
 	mode == 10 ||
 	mode == 2 ||
+	mode == 8 ||
 	mode == 16
 ) {
 	return Astro.redirect(`/generate?mode=${mode}&min=${min}&max=${max}`);
@@ -26,6 +27,7 @@ if (
 			<select name="mode" required>
 				<option value="10" selected>Decimal</option>
 				<option value="2">Binary</option>
+				<option value="8">Octal</option>
 				<option value="16">Hexadecimal</option>
 			</select>
 			<input
