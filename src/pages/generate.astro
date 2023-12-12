@@ -5,9 +5,6 @@ import '../styles/randomNumber.css';
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
 const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
-const randomNumber = Math.floor(Math.random() * (max - min + 1) + min)
-	.toString(mode)
-	.toUpperCase();
 if (
 	isNaN(min) ||
 	isNaN(max) ||
@@ -17,6 +14,9 @@ if (
 ) {
 	return Astro.redirect('/?error');
 }
+const randomNumber = Math.floor(Math.random() * (max - min + 1) + min)
+	.toString(mode)
+	.toUpperCase();
 ---
 
 <Layout>
