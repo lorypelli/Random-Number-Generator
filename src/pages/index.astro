@@ -18,8 +18,14 @@ if (
 
 <Layout>
 	{error && <h1 id="error">There was an error</h1>}
-	<div id="top">
-		<form action="/generate">
+	<div
+		id="top"
+		style={state == 'multiple' ? 'height: 320px;' : 'height: 250px;'}
+	>
+		<form
+			action="/generate"
+			style={state == 'multiple' ? 'height: 320px;' : 'height: 250px;'}
+		>
 			<input
 				id="numbers"
 				type="number"
@@ -27,8 +33,12 @@ if (
 				placeholder="Numbers Amount"
 				autocomplete="off"
 				name="numbers"
+				required={state == 'multiple' ? true : false}
+				style={state == 'multiple' ? 'display: block;' : 'display: none;'}
 			/>
-			<br />
+			<br
+				style={state == 'multiple' ? 'display: inline;' : 'display: none;'}
+			/>
 			<div id="selectors">
 				<select name="mode" required>
 					<option value="10" selected={mode == 10}>Decimal</option>
@@ -62,16 +72,6 @@ if (
 	</div>
 	<script>
 		let state = document.getElementById('state') as HTMLSelectElement;
-		window.addEventListener('load', () => {
-			let url = new URLSearchParams(window.location.search)
-			if (url.get("state") == "multiple") {
-				document.getElementsByTagName('form')[0].style.height = '320px';
-				document.getElementById('top')!.style.height = '320px';
-				document.getElementsByTagName('br')[0].style.display = 'inline';
-				document.getElementById('numbers')!.setAttribute('required', 'true');
-				document.getElementById('numbers')!.style.display = 'block';
-			}
-		})
 		state.addEventListener('change', () => {
 			if (state.value == 'multiple') {
 				document.getElementsByTagName('form')[0].style.height = '320px';
@@ -83,7 +83,7 @@ if (
 				document.getElementsByTagName('form')[0].style.height = '250px';
 				document.getElementById('top')!.style.height = '250px';
 				document.getElementsByTagName('br')[0].style.display = 'none';
-				document.getElementById('numbers')!.setAttribute('required', 'false')
+				document.getElementById('numbers')!.setAttribute('required', 'false');
 				document.getElementById('numbers')!.style.display = 'none';
 			}
 		});

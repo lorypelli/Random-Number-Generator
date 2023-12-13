@@ -19,10 +19,6 @@ form {
     display: flex;
 }
 
-#numbers, br {
-    display: none;
-}
-
 #numbers {
     margin: 0 auto;
 }
