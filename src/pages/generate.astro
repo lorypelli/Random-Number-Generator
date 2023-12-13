@@ -5,33 +5,54 @@ import '../styles/randomNumber.css';
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
 const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
+const state = Astro.url.searchParams.get('state')! as 'single' | 'multiple';
+let numbers = 1;
+let randomNumber: string | string[] = [];
 if (
 	isNaN(min) ||
 	isNaN(max) ||
 	min > max ||
 	isNaN(mode) ||
-	(mode != 10 && mode != 2 && mode != 8 && mode != 16)
+	(mode != 10 && mode != 2 && mode != 8 && mode != 16) ||
+	(state != 'single' && state != 'multiple')
 ) {
 	return Astro.redirect('/?error');
 }
-const randomNumber = Math.floor(Math.random() * (max - min + 1) + min)
-	.toString(mode)
-	.toUpperCase();
+if (state == 'multiple') {
+	numbers = parseInt(Astro.url.searchParams.get('numbers')!);
+	for (let i = 0; i < numbers; i++) {
+		(randomNumber as string[]).push(
+			Math.floor(Math.random() * (max - min + 1) + min)
+				.toString(mode)
+				.toUpperCase(),
+		);
+	}
+} else {
+	randomNumber = Math.floor(Math.random() * (max - min + 1) + min)
+		.toString(mode)
+		.toUpperCase();
+}
 ---
 
 <Layout>
-	<h1>
-		Il numero casuale in base {mode} tra {mode == 16 ? '0x' : ''}{
+		{
+			numbers > 1
+				? <h1>I {numbers} numeri casuali in base {mode} tra {mode == 16 ? '0x' : ''}{
 			min.toString(mode).toUpperCase()
-		} e {mode == 16 ? '0x' : ''}{max.toString(mode).toUpperCase()} è:
-	</h1>
+		} e {mode == 16 ? '0x' : ''}{max.toString(mode).toUpperCase()} sono:</h1>
+				: <h1>Il numero casuale in base {mode} tra {mode == 16 ? '0x' : ''}{
+			min.toString(mode).toUpperCase()
+		} e {mode == 16 ? '0x' : ''}{max.toString(mode).toUpperCase()} è:</h1>
+		}
 	<h1>
-		{mode == 16 ? '0x' : ''}{randomNumber}
+		{mode == 16 ? '0x' : ''}{(randomNumber as string[]).join(' | ')}
 	</h1>
 	<div id="buttons">
-		<a href=`/generate?mode=${mode}&min=${min}&max=${max}`
+		<a
+			href=`/generate?numbers=${numbers}&mode=${mode}&state=${state}&min=${min}&max=${max}`
 			><button>Generate Another</button></a
 		>
-		<a href=`/?mode=${mode}`><button>Change Intervals</button></a>
+		<a href=`/?mode=${mode}&state=${state}`><button>Change Intervals</button></a
+		>
 	</div>
 </Layout>

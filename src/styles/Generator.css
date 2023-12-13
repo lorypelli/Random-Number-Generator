@@ -3,7 +3,7 @@ form {
     height: 250px;
 }
 
-div {
+#top {
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -13,6 +13,18 @@ div {
     width: fit-content;
     height: 250px;
     border-radius: 25px;
+}
+
+#selectors {
+    display: flex;
+}
+
+#numbers, br {
+    display: none;
+}
+
+#numbers {
+    margin: 0 auto;
 }
 
 input {
@@ -36,6 +48,7 @@ select {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 15px;
+    width: 280px;
     font-size: 25px;
     border: 5px solid;
     border-radius: 25px;

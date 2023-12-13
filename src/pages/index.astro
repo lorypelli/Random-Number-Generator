@@ -6,9 +6,11 @@ const error = Astro.url.searchParams.has('error');
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
 const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
+const state = Astro.url.searchParams.get('state')! as 'single' | 'multiple';
 if (
 	(!isNaN(min) || !isNaN(max) || min < max) &&
-	(!isNaN(mode) || mode == 10 || mode == 2 || mode == 8 || mode == 16)
+	(!isNaN(mode) || mode == 10 || mode == 2 || mode == 8 || mode == 16) &&
+	(state == 'single' || state == 'multiple')
 ) {
 	return Astro.redirect(`/generate?mode=${mode}&min=${min}&max=${max}`);
 }
@@ -16,14 +18,31 @@ if (
 
 <Layout>
 	{error && <h1 id="error">There was an error</h1>}
-	<div>
+	<div id="top">
 		<form action="/generate">
-			<select name="mode" required>
-				<option value="10" selected={mode == 10}>Decimal</option>
-				<option value="2" selected={mode == 2}>Binary</option>
-				<option value="8" selected={mode == 8}>Octal</option>
-				<option value="16" selected={mode == 16}>Hexadecimal</option>
-			</select>
+			<input
+				id="numbers"
+				type="number"
+				min="0"
+				placeholder="Numbers Amount"
+				autocomplete="off"
+				name="numbers"
+			/>
+			<br />
+			<div id="selectors">
+				<select name="mode" required>
+					<option value="10" selected={mode == 10}>Decimal</option>
+					<option value="2" selected={mode == 2}>Binary</option>
+					<option value="8" selected={mode == 8}>Octal</option>
+					<option value="16" selected={mode == 16}>Hexadecimal</option>
+				</select>
+				<select id="state" name="state" required>
+					<option value="single" selected={state == 'single'}>Single</option>
+					<option value="multiple" selected={state == 'multiple'}
+						>Multiple</option
+					>
+				</select>
+			</div>
 			<input
 				type="number"
 				placeholder="Min Number"
@@ -41,4 +60,32 @@ if (
 			<button type="submit">Generate</button>
 		</form>
 	</div>
+	<script>
+		let state = document.getElementById('state') as HTMLSelectElement;
+		window.addEventListener('load', () => {
+			let url = new URLSearchParams(window.location.search)
+			if (url.get("state") == "multiple") {
+				document.getElementsByTagName('form')[0].style.height = '320px';
+				document.getElementById('top')!.style.height = '320px';
+				document.getElementsByTagName('br')[0].style.display = 'inline';
+				document.getElementById('numbers')!.setAttribute('required', 'true');
+				document.getElementById('numbers')!.style.display = 'block';
+			}
+		})
+		state.addEventListener('change', () => {
+			if (state.value == 'multiple') {
+				document.getElementsByTagName('form')[0].style.height = '320px';
+				document.getElementById('top')!.style.height = '320px';
+				document.getElementsByTagName('br')[0].style.display = 'inline';
+				document.getElementById('numbers')!.setAttribute('required', 'true');
+				document.getElementById('numbers')!.style.display = 'block';
+			} else {
+				document.getElementsByTagName('form')[0].style.height = '250px';
+				document.getElementById('top')!.style.height = '250px';
+				document.getElementsByTagName('br')[0].style.display = 'none';
+				document.getElementById('numbers')!.setAttribute('required', 'false')
+				document.getElementById('numbers')!.style.display = 'none';
+			}
+		});
+	</script>
 </Layout>
