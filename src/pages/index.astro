@@ -12,7 +12,9 @@ if (
 	(!isNaN(mode) || mode == 10 || mode == 2 || mode == 8 || mode == 16) &&
 	(state == 'single' || state == 'multiple')
 ) {
-	return Astro.redirect(`/generate?mode=${mode}&min=${min}&max=${max}`);
+	return Astro.redirect(
+		`/generate?mode=${mode}&state=${state}&min=${min}&max=${max}`,
+	);
 }
 ---
 
@@ -29,16 +31,14 @@ if (
 			<input
 				id="numbers"
 				type="number"
-				min="0"
+				min="2"
 				placeholder="Numbers Amount"
 				autocomplete="off"
 				name="numbers"
 				required={state == 'multiple' ? true : false}
 				style={state == 'multiple' ? 'display: block;' : 'display: none;'}
 			/>
-			<br
-				style={state == 'multiple' ? 'display: inline;' : 'display: none;'}
-			/>
+			<br style={state == 'multiple' ? 'display: inline;' : 'display: none;'} />
 			<div id="selectors">
 				<select name="mode" required>
 					<option value="10" selected={mode == 10}>Decimal</option>
