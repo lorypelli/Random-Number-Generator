@@ -6,54 +6,39 @@ const error = Astro.url.searchParams.has('error');
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
 const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
-const state = Astro.url.searchParams.get('state')! as 'single' | 'multiple';
 if (
 	(!isNaN(min) || !isNaN(max) || min < max) &&
-	(!isNaN(mode) || mode == 10 || mode == 2 || mode == 8 || mode == 16) &&
-	(state == 'single' || state == 'multiple')
+	(!isNaN(mode) || mode == 10 || mode == 2 || mode == 8 || mode == 16)
 ) {
 	return Astro.redirect(
-		`/generate?mode=${mode}&state=${state}&min=${min}&max=${max}`,
+		`/generate?mode=${mode}&min=${min}&max=${max}`,
 	);
 }
 ---
 
 <Layout>
 	{error && <h1 id="error">There was an error</h1>}
-	<div
-		id="top"
-		style={state == 'multiple' ? 'height: 320px;' : 'height: 250px;'}
-	>
-		<form
-			action="/generate"
-			style={state == 'multiple' ? 'height: 320px;' : 'height: 250px;'}
-		>
+	<div id="top">
+		<form action="/generate">
 			<input
 				id="numbers"
 				type="number"
 				min="1"
 				max="75"
+				value="1"
 				placeholder="Numbers Amount"
 				autocomplete="off"
 				name="numbers"
-				required={state == 'multiple' ? true : false}
-				style={state == 'multiple' ? 'display: block;' : 'display: none;'}
+				required
 			/>
-			<br style={state == 'multiple' ? 'display: inline;' : 'display: none;'} />
-			<div id="selectors">
-				<select name="mode" required>
-					<option value="10" selected={mode == 10}>Decimal</option>
-					<option value="2" selected={mode == 2}>Binary</option>
-					<option value="8" selected={mode == 8}>Octal</option>
-					<option value="16" selected={mode == 16}>Hexadecimal</option>
-				</select>
-				<select id="state" name="state" required>
-					<option value="single" selected={state == 'single'}>Single</option>
-					<option value="multiple" selected={state == 'multiple'}
-						>Multiple</option
-					>
-				</select>
-			</div>
+			<br />
+			<br />
+			<select name="mode" required>
+				<option value="10" selected={mode == 10}>Decimal</option>
+				<option value="2" selected={mode == 2}>Binary</option>
+				<option value="8" selected={mode == 8}>Octal</option>
+				<option value="16" selected={mode == 16}>Hexadecimal</option>
+			</select>
 			<input
 				type="number"
 				placeholder="Min Number"
@@ -71,22 +56,4 @@ if (
 			<button type="submit">Generate</button>
 		</form>
 	</div>
-	<script>
-		let state = document.getElementById('state') as HTMLSelectElement;
-		state.addEventListener('change', () => {
-			if (state.value == 'multiple') {
-				document.getElementsByTagName('form')[0].style.height = '320px';
-				document.getElementById('top')!.style.height = '320px';
-				document.getElementsByTagName('br')[0].style.display = 'inline';
-				document.getElementById('numbers')!.setAttribute('required', 'true');
-				document.getElementById('numbers')!.style.display = 'block';
-			} else {
-				document.getElementsByTagName('form')[0].style.height = '250px';
-				document.getElementById('top')!.style.height = '250px';
-				document.getElementsByTagName('br')[0].style.display = 'none';
-				document.getElementById('numbers')!.setAttribute('required', 'false');
-				document.getElementById('numbers')!.style.display = 'none';
-			}
-		});
-	</script>
 </Layout>

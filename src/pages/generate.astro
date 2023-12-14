@@ -5,29 +5,18 @@ import '../styles/randomNumber.css';
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
 const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
-const state = Astro.url.searchParams.get('state')! as 'single' | 'multiple';
-let numbers = 1;
+let numbers = parseInt(Astro.url.searchParams.get('numbers')!) || 1;
 let randomNumber = [];
 if (
 	isNaN(min) ||
 	isNaN(max) ||
 	min > max ||
 	isNaN(mode) ||
-	(mode != 10 && mode != 2 && mode != 8 && mode != 16) ||
-	(state != 'single' && state != 'multiple')
+	(mode != 10 && mode != 2 && mode != 8 && mode != 16)
 ) {
 	return Astro.redirect('/?error');
 }
-if (state == 'multiple') {
-	numbers = parseInt(Astro.url.searchParams.get('numbers')!);
-	for (let i = 0; i < numbers; i++) {
-		randomNumber.push(
-			Math.floor(Math.random() * (max - min + 1) + min)
-				.toString(mode)
-				.toUpperCase(),
-		);
-	}
-} else {
+for (let i = 0; i < numbers; i++) {
 	randomNumber.push(
 		Math.floor(Math.random() * (max - min + 1) + min)
 			.toString(mode)
@@ -56,11 +45,9 @@ if (state == 'multiple') {
 		{mode == 16 ? '0x' : ''}{randomNumber.join(' | ')}
 	</h1>
 	<div id="buttons">
-		<a
-			href=`/generate?numbers=${numbers}&mode=${mode}&state=${state}&min=${min}&max=${max}`
+		<a href=`/generate?numbers=${numbers}&mode=${mode}&min=${min}&max=${max}`
 			><button>Generate Another</button></a
 		>
-		<a href=`/?mode=${mode}&state=${state}`><button>Change Intervals</button></a
-		>
+		<a href=`/?mode=${mode}`><button>Change Intervals</button></a>
 	</div>
 </Layout>

@@ -1,6 +1,6 @@
 form {
     margin-top: 35px;
-    height: 250px;
+    height: 320px;
 }
 
 #top {
@@ -11,12 +11,8 @@ form {
     border: 5px solid;
     text-align: center;
     width: fit-content;
-    height: 250px;
+    height: 320px;
     border-radius: 25px;
-}
-
-#selectors {
-    display: flex;
 }
 
 #numbers {
