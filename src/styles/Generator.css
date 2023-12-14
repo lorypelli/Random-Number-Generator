@@ -30,6 +30,10 @@ input {
     box-shadow: 5px 5px 5px #000000;
 }
 
+.inputs {
+    display: none;
+}
+
 button {
     margin-top: 20px;
 }
@@ -57,30 +61,20 @@ select {
     background-color: red;
 }
 
-@media only screen and (max-width: 600px) {
-    form {
-        margin-top: 65px;
-        height: 350px;
+@media only screen and (max-width: 615px) {
+    #top, #error {
+        width: 350px;
     }
-
-    div {
-        height: 300px;
-    }
-
-    div,
-    #error {
-        width: 290px;
-    }
-
-    input {
-        margin: 5px 0
-    }
-
-    button {
-        margin-top: 10px;
+    
+    #top, form {
+        height: 390px;
     }
 
     #error {
         font-size: 20px;
+    }
+
+    .inputs {
+        display: inline;
     }
 }

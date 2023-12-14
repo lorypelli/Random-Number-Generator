@@ -10,7 +10,8 @@ const numbers = parseInt(Astro.url.searchParams.get('numbers')!);
 if (
 	(!isNaN(min) || !isNaN(max) || min < max) &&
 	(!isNaN(mode) || mode == 10 || mode == 2 || mode == 8 || mode == 16) &&
-	(numbers > 1 && numbers <= 75)
+	numbers > 1 &&
+	numbers <= 75
 ) {
 	return Astro.redirect(
 		`/generate?numbers=${numbers}&mode=${mode}&min=${min}&max=${max}`,
@@ -48,6 +49,8 @@ if (
 				name="min"
 				required
 			/>
+			<br class="inputs" />
+			<br class="inputs" />
 			<input
 				type="number"
 				placeholder="Max Number"
