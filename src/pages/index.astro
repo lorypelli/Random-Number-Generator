@@ -6,12 +6,14 @@ const error = Astro.url.searchParams.has('error');
 const min = parseInt(Astro.url.searchParams.get('min')!);
 const max = parseInt(Astro.url.searchParams.get('max')!);
 const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
+const numbers = parseInt(Astro.url.searchParams.get('numbers')!);
 if (
 	(!isNaN(min) || !isNaN(max) || min < max) &&
-	(!isNaN(mode) || mode == 10 || mode == 2 || mode == 8 || mode == 16)
+	(!isNaN(mode) || mode == 10 || mode == 2 || mode == 8 || mode == 16) &&
+	(numbers > 1 && numbers <= 75)
 ) {
 	return Astro.redirect(
-		`/generate?mode=${mode}&min=${min}&max=${max}`,
+		`/generate?numbers=${numbers}&mode=${mode}&min=${min}&max=${max}`,
 	);
 }
 ---
