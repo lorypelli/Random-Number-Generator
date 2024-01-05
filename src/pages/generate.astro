@@ -30,15 +30,15 @@ for (let i = 0; i < numbers; i++) {
 	{
 		numbers > 1 ? (
 			<h1>
-				I {numbers} numeri casuali in base {mode} tra {mode == 16 ? '0x' : ''}
-				{min.toString(mode).toUpperCase()} e {mode == 16 ? '0x' : ''}
-				{max.toString(mode).toUpperCase()} sono:
+				The {numbers} random numbers in base {mode} between {mode == 16 ? '0x' : ''}
+				{min.toString(mode).toUpperCase()} and {mode == 16 ? '0x' : ''}
+				{max.toString(mode).toUpperCase()} are:
 			</h1>
 		) : (
 			<h1>
-				Il numero casuale in base {mode} tra {mode == 16 ? '0x' : ''}
-				{min.toString(mode).toUpperCase()} e {mode == 16 ? '0x' : ''}
-				{max.toString(mode).toUpperCase()} è:
+				The random number in base {mode} between {mode == 16 ? '0x' : ''}
+				{min.toString(mode).toUpperCase()} and {mode == 16 ? '0x' : ''}
+				{max.toString(mode).toUpperCase()} is:
 			</h1>
 		)
 	}
