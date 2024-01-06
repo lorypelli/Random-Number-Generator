@@ -8,10 +8,14 @@ const max = parseInt(Astro.url.searchParams.get('max')!);
 const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
 const numbers = parseInt(Astro.url.searchParams.get('numbers')!);
 if (
-	(!isNaN(min) || !isNaN(max) || min < max) &&
+	(!isNaN(min) ||
+		!isNaN(max) ||
+		min < max ||
+		min <= 99999999 ||
+		max <= 99999999) &&
 	(!isNaN(mode) || mode == 10 || mode == 2 || mode == 8 || mode == 16) &&
 	numbers >= 1 &&
-	numbers <= 10
+	numbers <= 5
 ) {
 	return Astro.redirect(
 		`/generate?numbers=${numbers}&mode=${mode}&min=${min}&max=${max}`,
@@ -27,7 +31,7 @@ if (
 				id="numbers"
 				type="number"
 				min="1"
-				max="10"
+				max="5"
 				value={numbers || 1}
 				placeholder="Numbers Amount"
 				autocomplete="off"
@@ -44,6 +48,7 @@ if (
 			</select>
 			<input
 				type="number"
+				max="99999999"
 				placeholder="Min Number"
 				autocomplete="off"
 				name="min"
@@ -53,6 +58,7 @@ if (
 			<br class="inputs" />
 			<input
 				type="number"
+				max="99999999"
 				placeholder="Max Number"
 				autocomplete="off"
 				name="max"
