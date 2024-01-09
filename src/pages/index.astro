@@ -10,8 +10,8 @@ const mode = Astro.url.searchParams.get('mode') || '10';
 const numbers = Astro.url.searchParams.get('numbers') || '1';
 const isModeValid = z.enum(['10', '2', '8', '16']);
 if (min && max) {
-	const isMinValid = z.number().max(99999999).safeParse(parseInt(min));
-	const isMaxValid = z.number().max(99999999).safeParse(parseInt(max));
+	const isMinValid = z.number().min(-9999999).max(9999999).safeParse(parseInt(min));
+	const isMaxValid = z.number().min(-9999999).max(9999999).safeParse(parseInt(max));
 	const isNumbersValid = z.number().min(1).max(5).safeParse(parseInt(numbers));
 	if (
 		isMinValid.success &&
@@ -59,7 +59,8 @@ if (min && max) {
 			</select>
 			<input
 				type="number"
-				max="99999999"
+				min="-9999999"
+				max="9999999"
 				placeholder="Min Number"
 				autocomplete="off"
 				name="min"
@@ -69,7 +70,8 @@ if (min && max) {
 			<br class="inputs" />
 			<input
 				type="number"
-				max="99999999"
+				min="-9999999"
+				max="9999999"
 				placeholder="Max Number"
 				autocomplete="off"
 				name="max"
