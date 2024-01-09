@@ -2,24 +2,28 @@
 import Layout from '../layouts/Layout.astro';
 import '../styles/globals.css';
 import '../styles/Generator.css';
+import { z } from 'zod';
 const error = Astro.url.searchParams.has('error');
-const min = parseInt(Astro.url.searchParams.get('min')!);
-const max = parseInt(Astro.url.searchParams.get('max')!);
-const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
-const numbers = parseInt(Astro.url.searchParams.get('numbers')!);
-if (
-	(!isNaN(min) ||
-		!isNaN(max) ||
-		min < max ||
-		min <= 99999999 ||
-		max <= 99999999) &&
-	(!isNaN(mode) || mode == 10 || mode == 2 || mode == 8 || mode == 16) &&
-	numbers >= 1 &&
-	numbers <= 5
-) {
-	return Astro.redirect(
-		`/generate?numbers=${numbers}&mode=${mode}&min=${min}&max=${max}`,
-	);
+const min = Astro.url.searchParams.get('min');
+const max = Astro.url.searchParams.get('max');
+const mode = Astro.url.searchParams.get('mode') || '10';
+const numbers = Astro.url.searchParams.get('numbers') || '1';
+const isModeValid = z.enum(['10', '2', '8', '16']);
+if (min && max) {
+	const isMinValid = z.number().max(99999999).safeParse(parseInt(min));
+	const isMaxValid = z.number().max(99999999).safeParse(parseInt(max));
+	const isNumbersValid = z.number().min(1).max(5).safeParse(parseInt(numbers));
+	if (
+		isMinValid.success &&
+		isMaxValid.success &&
+		isMinValid.data < isMaxValid.data &&
+		isNumbersValid.success &&
+		isModeValid.safeParse(mode).success
+	) {
+		return Astro.redirect(
+			`/generate?numbers=${numbers}&mode=${mode}&min=${min}&max=${max}`,
+		);
+	}
 }
 ---
 
@@ -41,10 +45,17 @@ if (
 			<br />
 			<br />
 			<select name="mode" required>
-				<option value="10" selected={mode == 10}>Decimal</option>
-				<option value="2" selected={mode == 2}>Binary</option>
-				<option value="8" selected={mode == 8}>Octal</option>
-				<option value="16" selected={mode == 16}>Hexadecimal</option>
+				<option value="10" selected={mode == isModeValid.Values[10]}
+					>Decimal</option
+				>
+				<option value="2" selected={mode == isModeValid.Values[2]}
+					>Binary</option
+				>
+				<option value="8" selected={mode == isModeValid.Values[8]}>Octal</option
+				>
+				<option value="16" selected={mode == isModeValid.Values[16]}
+					>Hexadecimal</option
+				>
 			</select>
 			<input
 				type="number"

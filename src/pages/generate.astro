@@ -2,28 +2,35 @@
 import Layout from '../layouts/Layout.astro';
 import '../styles/globals.css';
 import '../styles/randomNumber.css';
-const min = parseInt(Astro.url.searchParams.get('min')!);
-const max = parseInt(Astro.url.searchParams.get('max')!);
-const mode = parseInt(Astro.url.searchParams.get('mode')!) as 10 | 2 | 8 | 16;
-let numbers = parseInt(Astro.url.searchParams.get('numbers')!) || 1;
+import { z } from 'zod';
+const min = Astro.url.searchParams.get('min');
+const max = Astro.url.searchParams.get('max');
+if (!min || !max) {
+	return Astro.redirect('/?error');
+}
+const mode = Astro.url.searchParams.get('mode') || '10';
+const numbers = Astro.url.searchParams.get('numbers') || '1';
+const isMinValid = z.number().max(99999999).safeParse(parseInt(min));
+const isMaxValid = z.number().max(99999999).safeParse(parseInt(max));
+const isModeValid = z.enum(['10', '2', '8', '16']);
+const isNumbersValid = z.number().min(1).max(5).safeParse(parseInt(numbers));
+const isHex = mode == isModeValid.Values[16];
 let randomNumber = [];
 if (
-	isNaN(min) ||
-	isNaN(max) ||
-	min > max ||
-	max > 99999999 ||
-	min > 99999999 ||
-	isNaN(mode) ||
-	(mode != 10 && mode != 2 && mode != 8 && mode != 16) ||
-	numbers < 1 ||
-	numbers > 5
+	!isMinValid.success ||
+	!isMaxValid.success ||
+	isMinValid.data > isMaxValid.data ||
+	!isNumbersValid.success ||
+	!isModeValid.safeParse(mode).success
 ) {
 	return Astro.redirect('/?error');
 }
-for (let i = 0; i < numbers; i++) {
+for (let i = 0; i < isNumbersValid.data; i++) {
 	randomNumber.push(
-		Math.floor(Math.random() * (max - min + 1) + min)
-			.toString(mode)
+		Math.floor(
+			Math.random() * (isMaxValid.data - isMinValid.data + 1) + isMinValid.data,
+		)
+			.toString(parseInt(mode))
 			.toUpperCase(),
 	);
 }
@@ -31,23 +38,24 @@ for (let i = 0; i < numbers; i++) {
 
 <Layout>
 	{
-		numbers > 1 ? (
+		isNumbersValid.data > 1 ? (
 			<h1>
-				The {numbers} random numbers in base {mode} between{' '}
-				{mode == 16 ? '0x' : ''}
-				{min.toString(mode).toUpperCase()} and {mode == 16 ? '0x' : ''}
-				{max.toString(mode).toUpperCase()} are:
+				The {numbers} random numbers in base {mode} between {isHex ? '0x' : ''}
+				{isMinValid.data.toString(parseInt(mode)).toUpperCase()} and{' '}
+				{isHex ? '0x' : ''}
+				{isMaxValid.data.toString(parseInt(mode)).toUpperCase()} are:
 			</h1>
 		) : (
 			<h1>
-				The random number in base {mode} between {mode == 16 ? '0x' : ''}
-				{min.toString(mode).toUpperCase()} and {mode == 16 ? '0x' : ''}
-				{max.toString(mode).toUpperCase()} is:
+				The random number in base {mode} between {isHex ? '0x' : ''}
+				{isMinValid.data.toString(parseInt(mode)).toUpperCase()} and{' '}
+				{isHex ? '0x' : ''}
+				{isMaxValid.data.toString(parseInt(mode)).toUpperCase()} is:
 			</h1>
 		)
 	}
 	<h1>
-		{mode == 16 ? '0x' : ''}{randomNumber.join(' | ')}
+		{isHex ? '0x' : ''}{randomNumber.join(' | ')}
 	</h1>
 	<div id="buttons">
 		<a href=`/generate?numbers=${numbers}&mode=${mode}&min=${min}&max=${max}`
