@@ -10,12 +10,20 @@ if (!min || !max) {
 }
 const mode = Astro.url.searchParams.get('mode') || '10';
 const numbers = Astro.url.searchParams.get('numbers') || '1';
-const isMinValid = z.number().min(-9999999).max(9999999).safeParse(parseInt(min));
-const isMaxValid = z.number().min(-9999999).max(9999999).safeParse(parseInt(max));
+const isMinValid = z
+	.number()
+	.min(-9999999)
+	.max(9999999)
+	.safeParse(parseInt(min));
+const isMaxValid = z
+	.number()
+	.min(-9999999)
+	.max(9999999)
+	.safeParse(parseInt(max));
 const isModeValid = z.enum(['10', '2', '8', '16']);
 const isNumbersValid = z.number().min(1).max(5).safeParse(parseInt(numbers));
 const isHex = mode == isModeValid.Values[16];
-let randomNumber = [];
+const randomNumber: string[] = [];
 if (
 	!isMinValid.success ||
 	!isMaxValid.success ||
@@ -25,6 +33,8 @@ if (
 ) {
 	return Astro.redirect('/?error');
 }
+const minNumber = isMinValid.data.toString(parseInt(mode)).toUpperCase();
+const maxNumber = isMaxValid.data.toString(parseInt(mode)).toUpperCase();
 for (let i = 0; i < isNumbersValid.data; i++) {
 	randomNumber.push(
 		Math.floor(
@@ -41,16 +51,14 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 		isNumbersValid.data > 1 ? (
 			<h1>
 				The {numbers} random numbers in base {mode} between {isHex ? '0x' : ''}
-				{isMinValid.data.toString(parseInt(mode)).toUpperCase()} and{' '}
-				{isHex ? '0x' : ''}
-				{isMaxValid.data.toString(parseInt(mode)).toUpperCase()} are:
+				{minNumber} and {isHex ? '0x' : ''}
+				{maxNumber} are:
 			</h1>
 		) : (
 			<h1>
 				The random number in base {mode} between {isHex ? '0x' : ''}
-				{isMinValid.data.toString(parseInt(mode)).toUpperCase()} and{' '}
-				{isHex ? '0x' : ''}
-				{isMaxValid.data.toString(parseInt(mode)).toUpperCase()} is:
+				{minNumber} and {isHex ? '0x' : ''}
+				{maxNumber} is:
 			</h1>
 		)
 	}
