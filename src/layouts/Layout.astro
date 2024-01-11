@@ -16,7 +16,7 @@
 	<body>
 		<button id="theme">Change Theme</button>
 		<slot />
-		<script lang="ts">
+		<script>
 			let theme = localStorage.getItem('theme');
 			const html = document.getElementsByTagName('html')[0];
 			if (theme != 'light' && theme != 'dark') {
@@ -24,19 +24,22 @@
 			}
 			localStorage.setItem('theme', theme);
 			html.setAttribute('theme', theme);
-			document.getElementById('theme').addEventListener('click', () => {
-				let theme = localStorage.getItem('theme');
-				if (theme != 'light' && theme != 'dark') {
-					theme = 'light';
-				}
-				if (theme == 'dark') {
-					localStorage.setItem('theme', 'light');
-					html.setAttribute('theme', 'light');
-				} else if (theme == 'light') {
-					localStorage.setItem('theme', 'dark');
-					html.setAttribute('theme', 'dark');
-				}
-			});
+			let themeElement = document.getElementById('theme');
+			if (themeElement) {
+				themeElement.addEventListener('click', () => {
+					let theme = localStorage.getItem('theme');
+					if (theme != 'light' && theme != 'dark') {
+						theme = 'light';
+					}
+					if (theme == 'dark') {
+						localStorage.setItem('theme', 'light');
+						html.setAttribute('theme', 'light');
+					} else if (theme == 'light') {
+						localStorage.setItem('theme', 'dark');
+						html.setAttribute('theme', 'dark');
+					}
+				});
+			}
 		</script>
 	</body>
 </html>
