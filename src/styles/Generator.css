@@ -7,7 +7,6 @@ form {
     overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: center;
     border: 5px solid;
     text-align: center;
     width: fit-content;
@@ -41,9 +40,7 @@ button {
 
 select {
     display: block;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     margin-bottom: 15px;
     background-color: var(--background-color);
     width: 280px;
@@ -67,7 +64,7 @@ select {
     #top, #error {
         width: 350px;
     }
-    
+
     #top, form {
         height: 390px;
     }
