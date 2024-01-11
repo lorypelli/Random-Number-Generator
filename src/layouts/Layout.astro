@@ -24,7 +24,7 @@
 			}
 			localStorage.setItem('theme', theme);
 			html.setAttribute('theme', theme);
-			let themeElement = document.getElementById('theme');
+			const themeElement = document.getElementById('theme');
 			if (themeElement) {
 				themeElement.addEventListener('click', () => {
 					let theme = localStorage.getItem('theme');
