@@ -12,13 +12,13 @@ const mode = Astro.url.searchParams.get('mode') || '10';
 const numbers = Astro.url.searchParams.get('numbers') || '1';
 const isMinValid = z
 	.number()
-	.min(-9999999)
-	.max(9999999)
+	.min(-999999999999999)
+	.max(999999999999999)
 	.safeParse(parseInt(min));
 const isMaxValid = z
 	.number()
-	.min(-9999999)
-	.max(9999999)
+	.min(-999999999999999)
+	.max(999999999999999)
 	.safeParse(parseInt(max));
 const isModeValid = z.enum(['10', '2', '8', '16']);
 const isNumbersValid = z.number().min(1).max(5).safeParse(parseInt(numbers));

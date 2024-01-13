@@ -12,13 +12,13 @@ const isModeValid = z.enum(['10', '2', '8', '16']);
 if (min && max) {
 	const isMinValid = z
 		.number()
-		.min(-9999999)
-		.max(9999999)
+		.min(-999999999999999)
+		.max(999999999999999)
 		.safeParse(parseInt(min));
 	const isMaxValid = z
 		.number()
-		.min(-9999999)
-		.max(9999999)
+		.min(-999999999999999)
+		.max(999999999999999)
 		.safeParse(parseInt(max));
 	const isNumbersValid = z.number().min(1).max(5).safeParse(parseInt(numbers));
 	if (
@@ -67,8 +67,8 @@ if (min && max) {
 			</select>
 			<input
 				type="number"
-				min="-9999999"
-				max="9999999"
+				min="-999999999999999"
+				max="999999999999999"
 				placeholder="Min Number"
 				autocomplete="off"
 				name="min"
@@ -78,8 +78,8 @@ if (min && max) {
 			<br class="inputs" />
 			<input
 				type="number"
-				min="-9999999"
-				max="9999999"
+				min="-999999999999999"
+				max="999999999999999"
 				placeholder="Max Number"
 				autocomplete="off"
 				name="max"
