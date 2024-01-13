@@ -63,14 +63,51 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 		)
 	}
 	<h1>
-		{isHex ? '0x' : ''}{randomNumber.join(' | ')}
+		{isHex ? '0x' : ''}<span id="number">{randomNumber.join(' | ')}</span>
 	</h1>
 	<div id="buttons">
-		<a href=`/generate?numbers=${numbers}&mode=${mode}&min=${min}&max=${max}`
-			><button>Generate Another</button></a
-		>
+		<noscript>
+			<a href=`/generate?numbers=${numbers}&mode=${mode}&min=${min}&max=${max}`
+				><button>Generate Another</button></a
+			>
+			<style>
+				#another {
+					display: none;
+				}
+			</style>
+		</noscript>
+		<button id="another">Generate Another</button>
 		<a href=`/?numbers=${numbers}&mode=${mode}`
 			><button>Change Intervals</button></a
 		>
 	</div>
+	<script>
+		const anotherElement = document.getElementById('another');
+		if (anotherElement) {
+			anotherElement.addEventListener('click', () => {
+				const number = document.getElementById('number');
+				const randomNumber: string[] = [];
+				if (number) {
+					const url = new URLSearchParams(window.location.search);
+					const min = url.get('min');
+					const max = url.get('max');
+					const mode = url.get('mode') || '10';
+					const numbers = url.get('numbers') || '1';
+					if (min && max && mode && numbers) {
+						for (let i = 0; i < parseInt(numbers); i++) {
+							randomNumber.push(
+								Math.floor(
+									Math.random() * (parseInt(max) - parseInt(min) + 1) +
+										parseInt(min),
+								)
+									.toString(parseInt(mode))
+									.toUpperCase(),
+							);
+						}
+					}
+					number.innerHTML = randomNumber.join(' | ');
+				}
+			});
+		}
+	</script>
 </Layout>
