@@ -11,6 +11,10 @@ button {
     display: none;
 }
 
+#duplicate {
+    font-size: 25px;
+}
+
 #previous {
     font-size: 20px;
 }
@@ -28,6 +32,10 @@ button {
 
     h1 {
         font-size: 20px;
+    }
+
+    #duplicate {
+        font-size: 15px;
     }
 
     #previous {

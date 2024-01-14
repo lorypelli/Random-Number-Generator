@@ -76,9 +76,9 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 	</h1>
 	{
 		randomNumber.length < parseInt(numbers) ? (
-			<h1>Some numbers weren't generated because they were a duplicate</h1>
+			<h1 id="duplicate">Some numbers weren't generated because they were a duplicate</h1>
 		) : (
-			<></>
+			<h1 id="duplicate"></h1>
 		)
 	}
 	<div id="buttons">
@@ -137,6 +137,10 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 						}
 					}
 					number.innerHTML = randomNumber.join(' | ');
+					const duplicate = document.getElementById('duplicate');
+					if (duplicate) {
+						duplicate.innerHTML = randomNumber.length < parseInt(numbers) ? 'Some numbers weren\'t generated because they were a duplicate' : ''
+					}
 					if (previousElement) {
 						const previousLabel = document.getElementById('previousLabel');
 						if (previousLabel) {
