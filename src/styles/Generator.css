@@ -39,7 +39,7 @@ button {
 }
 
 select {
-    display: block;
+    display: inline-block;
     margin: 0 auto;
     margin-bottom: 15px;
     background-color: var(--background-color);
