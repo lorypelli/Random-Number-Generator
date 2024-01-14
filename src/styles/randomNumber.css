@@ -7,6 +7,14 @@ button {
     margin-top: 40px;
 }
 
+#previousLabel {
+    display: none;
+}
+
+#previous {
+    font-size: 20px;
+}
+
 @media only screen and (max-width: 600px) {
     #buttons {
         width: 310px;
@@ -20,5 +28,9 @@ button {
 
     h1 {
         font-size: 20px;
+    }
+
+    #previous {
+        font-size: 10px;
     }
 }

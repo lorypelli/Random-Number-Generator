@@ -81,13 +81,23 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 			><button>Change Intervals</button></a
 		>
 	</div>
+	<h1 id="previousLabel">Previous Numbers</h1>
+	<h1 id="previous"></h1>
 	<script>
 		const anotherElement = document.getElementById('another');
+		const previousElement = document.getElementById('previous');
+		let oldNumbers: string[] = [];
 		if (anotherElement) {
 			anotherElement.addEventListener('click', () => {
 				const number = document.getElementById('number');
 				const randomNumber: string[] = [];
 				if (number) {
+					const nums = number.innerHTML.split(' | ');
+					for (let i = 0; i < nums.length; i++) {
+						if (!oldNumbers.includes(nums[i])) {
+							oldNumbers.push(nums[i]);
+						}
+					}
 					const url = new URLSearchParams(window.location.search);
 					const min = url.get('min');
 					const max = url.get('max');
@@ -106,6 +116,13 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 						}
 					}
 					number.innerHTML = randomNumber.join(' | ');
+					if (previousElement) {
+						const previousLabel = document.getElementById('previousLabel');
+						if (previousLabel) {
+							previousLabel.style.display = 'block';
+						}
+						previousElement.innerHTML = oldNumbers.join(', ');
+					}
 				}
 			});
 		}
