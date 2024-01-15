@@ -61,7 +61,6 @@ select {
 }
 
 @media only screen and (max-width: 615px) {
-
     select {
         width: 160px;
     }

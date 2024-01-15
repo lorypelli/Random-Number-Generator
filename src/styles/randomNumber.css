@@ -19,15 +19,15 @@ button {
     font-size: 20px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 615px) {
+    button {
+        width: 250px;
+        font-size: 20px;
+    }
+
     #buttons {
         width: 310px;
         height: 310px;
-    }
-
-    button {
-        width: 290px;
-        font-size: 40px;
     }
 
     h1 {

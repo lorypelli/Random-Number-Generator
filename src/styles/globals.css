@@ -43,3 +43,10 @@ button {
 #theme {
     margin-bottom: 15px;
 }
+
+@media only screen and (max-width: 615px) {
+    button {
+        width: 290px;
+        font-size: 30px;
+    }
+}
