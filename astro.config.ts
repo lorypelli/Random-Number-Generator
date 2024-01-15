@@ -4,6 +4,7 @@ export default defineConfig({
     output: 'server',
     adapter: vercel(),
     server: {
+        open: true,
         host: '127.0.0.1',
         port: 5173
     },
