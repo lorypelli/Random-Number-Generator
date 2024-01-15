@@ -39,7 +39,7 @@ button {
 }
 
 select {
-    display: inline-block;
+    display: inline;
     margin: 0 auto;
     margin-bottom: 15px;
     background-color: var(--background-color);
@@ -61,6 +61,10 @@ select {
 }
 
 @media only screen and (max-width: 615px) {
+
+    select {
+        width: 160px;
+    }
 
     #top,
     #error {
