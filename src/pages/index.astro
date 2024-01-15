@@ -14,13 +14,13 @@ const isFrequencyValid = z.enum(['repeat', 'no-repeat']);
 if (min && max) {
 	const isMinValid = z
 		.number()
-		.min(-999999999999999)
-		.max(999999999999999)
+		.min(Number.MIN_SAFE_INTEGER)
+		.max(Number.MAX_SAFE_INTEGER)
 		.safeParse(parseInt(min));
 	const isMaxValid = z
 		.number()
-		.min(-999999999999999)
-		.max(999999999999999)
+		.min(Number.MIN_SAFE_INTEGER)
+		.max(Number.MAX_SAFE_INTEGER)
 		.safeParse(parseInt(max));
 	const isNumbersValid = z.number().min(1).max(5).safeParse(parseInt(numbers));
 	if (
@@ -82,8 +82,8 @@ if (min && max) {
 			</select>
 			<input
 				type="number"
-				min="-999999999999999"
-				max="999999999999999"
+				min={Number.MIN_SAFE_INTEGER}
+				max={Number.MAX_SAFE_INTEGER}
 				placeholder="Min Number"
 				autocomplete="off"
 				name="min"
@@ -93,8 +93,8 @@ if (min && max) {
 			<br class="inputs" />
 			<input
 				type="number"
-				min="-999999999999999"
-				max="999999999999999"
+				min={Number.MIN_SAFE_INTEGER}
+				max={Number.MAX_SAFE_INTEGER}
 				placeholder="Max Number"
 				autocomplete="off"
 				name="max"

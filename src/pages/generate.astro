@@ -13,13 +13,13 @@ const frequency = Astro.url.searchParams.get('frequency') || 'repeat';
 const numbers = Astro.url.searchParams.get('numbers') || '1';
 const isMinValid = z
 	.number()
-	.min(-999999999999999)
-	.max(999999999999999)
+	.min(Number.MIN_SAFE_INTEGER)
+	.max(Number.MAX_SAFE_INTEGER)
 	.safeParse(parseInt(min));
 const isMaxValid = z
 	.number()
-	.min(-999999999999999)
-	.max(999999999999999)
+	.min(Number.MIN_SAFE_INTEGER)
+	.max(Number.MAX_SAFE_INTEGER)
 	.safeParse(parseInt(max));
 const isModeValid = z.enum(['10', '2', '8', '16']);
 const isFrequencyValid = z.enum(['repeat', 'no-repeat']);
@@ -76,9 +76,11 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 	</h1>
 	{
 		randomNumber.length < parseInt(numbers) ? (
-			<h1 id="duplicate">Some numbers weren't generated because they were a duplicate</h1>
+			<h1 id="duplicate">
+				Some numbers weren't generated because they were a duplicate
+			</h1>
 		) : (
-			<h1 id="duplicate"></h1>
+			<h1 id="duplicate" />
 		)
 	}
 	<div id="buttons">
@@ -139,7 +141,10 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 					number.innerHTML = randomNumber.join(' | ');
 					const duplicate = document.getElementById('duplicate');
 					if (duplicate) {
-						duplicate.innerHTML = randomNumber.length < parseInt(numbers) ? 'Some numbers weren\'t generated because they were a duplicate' : ''
+						duplicate.innerHTML =
+							randomNumber.length < parseInt(numbers)
+								? "Some numbers weren't generated because they were a duplicate"
+								: '';
 					}
 					if (previousElement) {
 						const previousLabel = document.getElementById('previousLabel');
