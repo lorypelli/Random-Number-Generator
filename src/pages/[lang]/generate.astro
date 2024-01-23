@@ -1,8 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import '../styles/globals.css';
-import '../styles/randomNumber.css';
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/globals.css';
+import '../../styles/randomNumber.css';
 import { z } from 'zod';
+import t from '../../utils/t.ts';
+let { lang } = Astro.params;
+if (!lang) {
+	lang = 'en';
+}
 const min = Astro.url.searchParams.get('min');
 const max = Astro.url.searchParams.get('max');
 if (!min || !max) {
@@ -36,8 +41,6 @@ if (
 ) {
 	return Astro.redirect('/?error');
 }
-const minNumber = isMinValid.data.toString(parseInt(mode)).toUpperCase();
-const maxNumber = isMaxValid.data.toString(parseInt(mode)).toUpperCase();
 for (let i = 0; i < isNumbersValid.data; i++) {
 	const number = Math.floor(
 		Math.random() * (isMaxValid.data - isMinValid.data + 1) + isMinValid.data,
@@ -58,17 +61,9 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 <Layout>
 	{
 		randomNumber.length > 1 ? (
-			<h1>
-				The {numbers} random numbers in base {mode} between {isHex ? '0x' : ''}
-				{minNumber} and {isHex ? '0x' : ''}
-				{maxNumber} are:
-			</h1>
+			<h1>{t(lang, 'generate.label.multiple')}</h1>
 		) : (
-			<h1>
-				The random number in base {mode} between {isHex ? '0x' : ''}
-				{minNumber} and {isHex ? '0x' : ''}
-				{maxNumber} is:
-			</h1>
+			<h1>{t(lang, 'generate.label.single')}</h1>
 		)
 	}
 	<h1>
@@ -76,9 +71,7 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 	</h1>
 	{
 		randomNumber.length < parseInt(numbers) ? (
-			<h1 id="duplicate">
-				Some numbers weren't generated because they were a duplicate
-			</h1>
+			<h1 id="duplicate">{t(lang, 'generate.label.duplicate')}</h1>
 		) : (
 			<h1 id="duplicate" />
 		)
@@ -87,7 +80,7 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 		<noscript>
 			<a
 				href=`/generate?numbers=${numbers}&mode=${mode}&frequency=${frequency}&min=${min}&max=${max}`
-				><button>Generate Another</button></a
+				><button>{t(lang, 'generate.buttons.another')}</button></a
 			>
 			<style>
 				#another {
@@ -95,12 +88,12 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 				}
 			</style>
 		</noscript>
-		<button id="another">Generate Another</button>
+		<button id="another">{t(lang, 'generate.buttons.another')}</button>
 		<a href=`/?numbers=${numbers}&mode=${mode}&frequency=${frequency}`
-			><button>Change Intervals</button></a
+			><button>{t(lang, 'generate.buttons.intervals')}</button></a
 		>
 	</div>
-	<h1 id="previousLabel">Previous Numbers</h1>
+	<h1 id="previousLabel">{t(lang, 'generate.label.previous')}</h1>
 	<h1 id="previous"></h1>
 	<script>
 		const anotherElement = document.getElementById('another');

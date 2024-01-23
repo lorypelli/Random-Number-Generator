@@ -1,17 +1,28 @@
+---
+import t from '../utils/t.ts';
+let { lang } = Astro.params;
+if (!lang) {
+	lang = 'en';
+}
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content="Generate random numbers" />
-		<meta name="og:title" content="Random Number Generator" />
-		<meta name="og:description" content="Generate random numbers" />
+		<meta name="description" content={t(lang, 'document.meta.description')} />
+		<meta name="og:title" content={t(lang, 'document.meta.og.title')} />
+		<meta
+			name="og:description"
+			content={t(lang, 'document.meta.og.description')}
+		/>
 		<link
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@600&display=swap"
 		/>
 		<link rel="favicon" href="./favicon.ico" />
-		<title>Random Number Generator</title>
+		<title>{t(lang, 'document.title')}</title>
 	</head>
 	<body>
 		<noscript>
@@ -27,7 +38,11 @@
 				}
 			</style>
 		</noscript>
-		<button id="theme">Change Theme</button>
+		<button id="theme">{t(lang, 'theme.change')}</button>
+		<select id="lang">
+			<option data-short="en">English</option>
+			<option data-short="it">Italian</option>
+		</select>
 		<slot />
 		<script>
 			let theme = localStorage.getItem('theme');
@@ -52,6 +67,10 @@
 						html.setAttribute('theme', 'dark');
 					}
 				});
+			}
+			const langElement = document.getElementById('lang');
+			if (langElement) {
+				langElement.addEventListener('change', () => {});
 			}
 		</script>
 	</body>
