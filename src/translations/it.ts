@@ -1,4 +1,14 @@
 export const translations = {
+    document: {
+        title: 'Generatore Numeri Casuali',
+        meta: {
+            description: 'Genera numeri casuali',
+            og: {
+                title: 'Generatore Numeri Casuali',
+                description: 'Genera numeri casuali'
+            }
+        }
+    },
     theme: {
         change: 'Cambia Tema'
     },
