@@ -3,10 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/globals.css';
 import '../../styles/randomNumber.css';
 import { z } from 'zod';
+import isValidLang from '../../utils/isValidLang.ts';
 import t from '../../utils/t.ts';
 let { lang } = Astro.params;
-if (!lang) {
-	lang = 'en';
+if (!lang || !isValidLang(lang)) {
+	return Astro.redirect('/');
 }
 const min = Astro.url.searchParams.get('min');
 const max = Astro.url.searchParams.get('max');

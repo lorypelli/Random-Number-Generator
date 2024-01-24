@@ -1,8 +1,9 @@
 ---
+import isValidLang from '../utils/isValidLang.ts';
 import t from '../utils/t.ts';
 let { lang } = Astro.params;
-if (!lang) {
-	lang = 'en';
+if (!lang || !isValidLang(lang)) {
+	return Astro.redirect('/');
 }
 ---
 
@@ -40,8 +41,8 @@ if (!lang) {
 		</noscript>
 		<button id="theme">{t(lang, 'theme.change')}</button>
 		<select id="lang">
-			<option data-short="en">English</option>
-			<option data-short="it">Italian</option>
+			<option data-short="en" selected={lang == 'en'}>English</option>
+			<option data-short="it" selected={lang == 'it'}>Italiano</option>
 		</select>
 		<slot />
 		<script>
@@ -71,9 +72,11 @@ if (!lang) {
 			const langElement = document.getElementById('lang');
 			if (langElement) {
 				langElement.addEventListener('change', () => {
-					for (let i = 0; i < langElement.childNodes.length; i++) {
+					for (let i = 0; i < langElement.children.length; i++) {
 						if (i == (langElement as HTMLSelectElement).selectedIndex) {
-							window.location.replace(`/${(langElement.childNodes[i] as HTMLElement).getAttribute('data-short')}`)
+							window.location.replace(
+								`/${langElement.children[i].getAttribute('data-short')}`,
+							);
 						}
 					}
 				});

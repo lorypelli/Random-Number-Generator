@@ -5,6 +5,11 @@
 
 button {
     margin-top: 40px;
+    font-size: 35px;
+}
+
+select {
+    font-size: 25px;
 }
 
 #previousLabel {

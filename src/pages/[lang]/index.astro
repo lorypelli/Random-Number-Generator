@@ -3,8 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/globals.css';
 import '../../styles/Generator.css';
 import { z } from 'zod';
+import isValidLang from '../../utils/isValidLang.ts';
 import t from '../../utils/t.ts';
-import isValidLang from '../../utils/isValidLang';
 let { lang } = Astro.params;
 if (!lang || !isValidLang(lang)) {
 	return Astro.redirect('/');

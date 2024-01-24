@@ -40,6 +40,18 @@ button {
     box-shadow: 5px 5px 5px var(--invert-color);
 }
 
+select {
+    display: inline;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    background-color: var(--background-color);
+    width: 280px;
+    font-size: 25px;
+    border: 5px solid;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px var(--invert-color);
+}
+
 #theme {
     margin-bottom: 15px;
 }

@@ -1,6 +1,6 @@
 import { translations as en } from '../translations/en.ts';
 import { translations as it } from '../translations/it.ts';
-export default function t(l: string, s: string) {
+export default function t(l: string, s: string, ...a: string[]) {
     const arr = s.split('.');
     switch (l) {
     case 'en': {
@@ -11,6 +11,9 @@ export default function t(l: string, s: string) {
             return {};
         }, en);
         if (typeof v == 'string') {
+            if (v.includes('{')) {
+                for (let i = 0; i < v.length; i++) {}
+            }
             return v;
         }
         return '';
@@ -23,6 +26,9 @@ export default function t(l: string, s: string) {
             return {};
         }, it);
         if (typeof v == 'string') {
+            if (v.includes('{')) {
+                for (let i = 0; i < v.length; i++) {}
+            }
             return v;
         }
         return '';

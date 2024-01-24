@@ -6,6 +6,6 @@ export default function isValidLang(l: string) {
         if (l == files[i].split('.')[0]) {
             return true;
         }
-        return false;
     }
+    return false;
 }
