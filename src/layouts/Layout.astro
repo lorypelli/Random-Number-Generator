@@ -74,9 +74,11 @@ if (!lang || !isValidLang(lang)) {
 				langElement.addEventListener('change', () => {
 					for (let i = 0; i < langElement.children.length; i++) {
 						if (i == (langElement as HTMLSelectElement).selectedIndex) {
-							window.location.replace(
-								`/${langElement.children[i].getAttribute('data-short')}`,
-							);
+							const lang = langElement.children[i].getAttribute('data-short');
+							if (lang) {
+								window.location.replace(`/${lang}`);
+								localStorage.setItem('lang', lang)
+							}
 						}
 					}
 				});
