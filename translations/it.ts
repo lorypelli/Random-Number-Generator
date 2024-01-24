@@ -37,8 +37,8 @@ export const translations = {
     },
     generate: {
         label: {
-            single: 'Il numero casuale in base {mode} tra {isHex ? \'0x\' : \'\'}{minNumber} e {isHex ? \'0x\' : \'\'}{maxNumber} è:',
-            multiple: 'I {numbers} numeri casuali in base {mode} tra {isHex ? \'0x\' : \'\'}{minNumber} e {isHex ? \'0x\' : \'\'}{maxNumber} sono:',
+            single: 'Il numero casuale in base {mode} tra {hex}{minNumber} e {hex}{maxNumber} è:',
+            multiple: 'I {numbers} numeri casuali in base {mode} tra {hex}{minNumber} e {hex}{maxNumber} sono:',
             duplicate: 'Alcuni numeri non sono stati generati perchè sono duplicati',
             previous: 'Numeri Precedenti'
         },

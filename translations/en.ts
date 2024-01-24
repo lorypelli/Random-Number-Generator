@@ -37,8 +37,8 @@ export const translations = {
     },
     generate: {
         label: {
-            single: 'The random number in base {mode} between {isHex ? \'0x\' : \'\'}{minNumber} and {isHex ? \'0x\' : \'\'}{maxNumber} is:',
-            multiple: 'The {numbers} random numbers in base {mode} between {isHex ? \'0x\' : \'\'}{minNumber} and {isHex ? \'0x\' : \'\'}{maxNumber} are:',
+            single: 'The random number in base {mode} between {hex}{minNumber} and {hex}{maxNumber} is:',
+            multiple: 'The {numbers} random numbers in base {mode} between {hex}{minNumber} and {hex}{maxNumber} are:',
             duplicate: 'Some numbers weren\'t generated because they were a duplicate',
             previous: 'Previous Numbers'
         },
