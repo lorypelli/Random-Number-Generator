@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/globals.css';
+import '../../styles/Generator.css';
+import { z } from 'zod';
+import isValidLang from '../../utils/isValidLang.ts';
+import t from '../../utils/t.ts';
+let { lang } = Astro.params;
+if (!lang || !isValidLang(lang)) {
+	return Astro.redirect('/');
+}
+const error = Astro.url.searchParams.has('error');
+const min = Astro.url.searchParams.get('min');
+const max = Astro.url.searchParams.get('max');
+const mode = Astro.url.searchParams.get('mode') || '10';
+const frequency = Astro.url.searchParams.get('frequency') || 'repeat';
+const numbers = Astro.url.searchParams.get('numbers') || '1';
+const isModeValid = z.enum(['10', '2', '8', '16']);
+const isFrequencyValid = z.enum(['repeat', 'no-repeat']);
+if (min && max) {
+	const isMinValid = z
+		.number()
+		.min(Number.MIN_SAFE_INTEGER)
+		.max(Number.MAX_SAFE_INTEGER)
+		.safeParse(parseInt(min));
+	const isMaxValid = z
+		.number()
+		.min(Number.MIN_SAFE_INTEGER)
+		.max(Number.MAX_SAFE_INTEGER)
+		.safeParse(parseInt(max));
+	const isNumbersValid = z.number().min(1).max(5).safeParse(parseInt(numbers));
+	if (
+		isMinValid.success &&
+		isMaxValid.success &&
+		isMinValid.data < isMaxValid.data &&
+		isNumbersValid.success &&
+		isModeValid.safeParse(mode).success &&
+		isFrequencyValid.safeParse(frequency).success
+	) {
+		return Astro.redirect(
+			`/generate?numbers=${numbers}&mode=${mode}&frequency=${frequency}&min=${min}&max=${max}`,
+		);
+	}
+}
+---
+
+<Layout>
+	{error && <h1 id="error">There was an error</h1>}
+	<div id="top">
+		<form action=`/${lang}/generate`>
+			<input
+				id="numbers"
+				type="number"
+				min="1"
+				max="5"
+				value={numbers || 1}
+				placeholder={t(lang, 'numbers.amount')}
+				autocomplete="off"
+				name="numbers"
+				required
+			/>
+			<br />
+			<br />
+			<select name="mode" required>
+				<option value="10" selected={mode == isModeValid.Values[10]}
+					>{t(lang, 'mode.decimal')}</option
+				>
+				<option value="2" selected={mode == isModeValid.Values[2]}
+					>{t(lang, 'mode.binary')}</option
+				>
+				<option value="8" selected={mode == isModeValid.Values[8]}
+					>{t(lang, 'mode.octal')}</option
+				>
+				<option value="16" selected={mode == isModeValid.Values[16]}
+					>{t(lang, 'mode.hex')}</option
+				>
+			</select>
+			<select name="frequency" required>
+				<option
+					value="repeat"
+					selected={frequency == isFrequencyValid.Values['repeat']}
+					>{t(lang, 'frequency.repeat')}</option
+				>
+				<option
+					value="no-repeat"
+					selected={frequency == isFrequencyValid.Values['no-repeat']}
+					>{t(lang, 'frequency.no_repeat')}</option
+				>
+			</select>
+			<input
+				type="number"
+				min={Number.MIN_SAFE_INTEGER}
+				max={Number.MAX_SAFE_INTEGER}
+				placeholder={t(lang, 'number.min')}
+				autocomplete="off"
+				name="min"
+				required
+			/>
+			<br class="inputs" />
+			<br class="inputs" />
+			<input
+				type="number"
+				min={Number.MIN_SAFE_INTEGER}
+				max={Number.MAX_SAFE_INTEGER}
+				placeholder={t(lang, 'number.max')}
+				autocomplete="off"
+				name="max"
+				required
+			/>
+			<button type="submit">{t(lang, 'gbutton.text')}</button>
+		</form>
+	</div>
+</Layout>
