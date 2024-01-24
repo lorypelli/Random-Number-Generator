@@ -79,7 +79,7 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 	<div id="buttons">
 		<noscript>
 			<a
-				href=`/generate?numbers=${numbers}&mode=${mode}&frequency=${frequency}&min=${min}&max=${max}`
+				href=`${lang}/generate?numbers=${numbers}&mode=${mode}&frequency=${frequency}&min=${min}&max=${max}`
 				><button>{t(lang, 'generate.buttons.another')}</button></a
 			>
 			<style>
@@ -89,7 +89,7 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 			</style>
 		</noscript>
 		<button id="another">{t(lang, 'generate.buttons.another')}</button>
-		<a href=`/?numbers=${numbers}&mode=${mode}&frequency=${frequency}`
+		<a href=`/${lang}/?numbers=${numbers}&mode=${mode}&frequency=${frequency}`
 			><button>{t(lang, 'generate.buttons.intervals')}</button></a
 		>
 	</div>
