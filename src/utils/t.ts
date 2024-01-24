@@ -1,5 +1,5 @@
-import { translations as en } from '../../public/translations/en.ts';
-import { translations as it } from '../../public/translations/it.ts';
+import { translations as en } from '../../translations/en.ts';
+import { translations as it } from '../../translations/it.ts';
 export default function t(l: string, s: string, ...a: string[]) {
     const arr = s.split('.');
     switch (l) {

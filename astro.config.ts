@@ -2,7 +2,9 @@ import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
     output: 'server',
-    adapter: vercel(),
+    adapter: vercel({
+        includeFiles: ['./translations/en.ts', './translations/it.ts']
+    }),
     server: {
         open: true,
         host: '127.0.0.1',
