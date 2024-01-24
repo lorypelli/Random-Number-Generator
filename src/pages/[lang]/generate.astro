@@ -30,7 +30,7 @@ const isMaxValid = z
 const isModeValid = z.enum(['10', '2', '8', '16']);
 const isFrequencyValid = z.enum(['repeat', 'no-repeat']);
 const isNumbersValid = z.number().min(1).max(5).safeParse(parseInt(numbers));
-const isHex = mode == isModeValid.Values[16];
+const hex = mode == isModeValid.Values[16] ? '0x' : '';
 const randomNumber: string[] = [];
 if (
 	!isMinValid.success ||
@@ -62,13 +62,13 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 <Layout>
 	{
 		randomNumber.length > 1 ? (
-			<h1>{t(lang, 'generate.label.multiple')}</h1>
+			<h1>{t(lang, 'generate.label.multiple', mode, hex, min, hex, max)}</h1>
 		) : (
-			<h1>{t(lang, 'generate.label.single')}</h1>
+			<h1>{t(lang, 'generate.label.single', mode, hex, min, hex, max)}</h1>
 		)
 	}
 	<h1>
-		{isHex ? '0x' : ''}<span id="number">{randomNumber.join(' | ')}</span>
+		{hex}<span id="number">{randomNumber.join(' | ')}</span>
 	</h1>
 	{
 		randomNumber.length < parseInt(numbers) ? (

@@ -12,7 +12,16 @@ export default function t(l: string, s: string, ...a: string[]) {
         }, en);
         if (typeof v == 'string') {
             if (v.includes('{')) {
-                for (let i = 0; i < v.length; i++) {}
+                if (v.includes('{')) {
+                    let str = v;
+                    let c = 0;
+                    str = v.replace(/\{.*?\}/g, () => {
+                        const r = a[c];
+                        c++;
+                        return r;
+                    });
+                    return str;
+                }
             }
             return v;
         }
@@ -27,7 +36,14 @@ export default function t(l: string, s: string, ...a: string[]) {
         }, it);
         if (typeof v == 'string') {
             if (v.includes('{')) {
-                for (let i = 0; i < v.length; i++) {}
+                let str = v;
+                let c = 0;
+                str = v.replace(/\{.*?\}/g, () => {
+                    const r = a[c];
+                    c++;
+                    return r;
+                });
+                return str;
             }
             return v;
         }
