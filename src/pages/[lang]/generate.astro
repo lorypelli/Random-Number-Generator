@@ -6,7 +6,7 @@ import { z } from 'zod';
 import isValidLang from '../../utils/isValidLang.ts';
 import t from '../../utils/t.ts';
 let { lang } = Astro.params;
-if (!lang || !isValidLang(lang)) {
+if (!lang || !await isValidLang(lang)) {
 	return Astro.redirect('/');
 }
 const min = Astro.url.searchParams.get('min');
@@ -62,7 +62,7 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 <Layout>
 	{
 		randomNumber.length > 1 ? (
-			<h1>{t(lang, 'generate.label.multiple', mode, hex, min, hex, max)}</h1>
+			<h1>{t(lang, 'generate.label.multiple', numbers, mode, hex, min, hex, max)}</h1>
 		) : (
 			<h1>{t(lang, 'generate.label.single', mode, hex, min, hex, max)}</h1>
 		)
@@ -80,7 +80,7 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 	<div id="buttons">
 		<noscript>
 			<a
-				href=`${lang}/generate?numbers=${numbers}&mode=${mode}&frequency=${frequency}&min=${min}&max=${max}`
+				href=`/${lang}/generate?numbers=${numbers}&mode=${mode}&frequency=${frequency}&min=${min}&max=${max}`
 				><button>{t(lang, 'generate.buttons.another')}</button></a
 			>
 			<style>
