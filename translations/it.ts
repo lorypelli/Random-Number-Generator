@@ -39,7 +39,7 @@ export const translations = {
         label: {
             single: 'Il numero casuale in base {mode} tra {hex}{minNumber} e {hex}{maxNumber} è:',
             multiple: 'I {numbers} numeri casuali in base {mode} tra {hex}{minNumber} e {hex}{maxNumber} sono:',
-            duplicate: 'Alcuni numeri non sono stati generati perchè sono duplicati',
+            duplicate: 'Alcuni numeri non sono stati generati perché sono duplicati',
             previous: 'Numeri Precedenti'
         },
         buttons: {
