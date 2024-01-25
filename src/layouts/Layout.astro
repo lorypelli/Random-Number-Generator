@@ -76,8 +76,12 @@ if (!lang || !isValidLang(lang)) {
 						if (i == (langElement as HTMLSelectElement).selectedIndex) {
 							const lang = langElement.children[i].getAttribute('data-short');
 							if (lang) {
-								window.location.replace(`/${lang}`);
-								localStorage.setItem('lang', lang)
+								const path = window.location.pathname.split('/')[2];
+								const params = window.location.search;
+								window.location.replace(
+									`/${lang}/${path ? path : ''}${params != '' ? params : ''}`,
+								);
+								localStorage.setItem('lang', lang);
 							}
 						}
 					}

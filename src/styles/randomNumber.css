@@ -26,8 +26,13 @@ select {
 
 @media only screen and (max-width: 615px) {
     button {
-        width: 250px;
+        width: 300px;
         font-size: 20px;
+    }
+
+    select {
+        width: 120px;
+        font-size: 15px;
     }
 
     #buttons {
