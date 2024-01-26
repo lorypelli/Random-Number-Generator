@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout>
 	<script>
 		window.onload = () => {
-			window.location.replace(`/${localStorage.getItem('lang') || 'en'}`);
+			window.location.replace(`/${localStorage.getItem('lang') || 'en'}/`);
 		};
 	</script>
 </Layout>
