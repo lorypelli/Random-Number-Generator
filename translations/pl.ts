@@ -1,50 +1,50 @@
 export const translations = {
   document: {
-    title: "Generator Losowych Liczb",
+    title: 'Random Number Generator',
     meta: {
-      description: "Generuj losowe liczby",
+      description: 'Generate random numbers',
       og: {
-        title: "Generator Losowych Liczb",
-        description: "Generuj losowe liczby"
+        title: 'Random Number Generator',
+        description: 'Generate random numbers'
       }
     }
   },
   theme: {
-    change: "Zmień Motyw"
+    change: 'Change Theme'
   },
   error: {
-    generic: "Wystąpił błąd"
+    generic: 'There was an error'
   },
   numbers: {
-    amount: "Ilość liczb"
+    amount: 'Numbers Amount'
   },
   mode: {
-    decimal: "Dziesiętny",
-    binary: "Dwójkowy",
-    octal: "Ósemkowy",
-    hex: "Szesnastkowy"
+    decimal: 'Decimal',
+    binary: 'Binary',
+    octal: 'Octal',
+    hex: 'Hexadecimal'
   },
   frequency: {
-    repeat: "Powtórz",
-    no_repeat: "Nie powtarzaj"
+    repeat: 'Repeat',
+    no_repeat: 'No Repeat'
   },
   number: {
-    min: "Min Liczba",
-    max: "Max Liczba"
+    min: 'Min Number',
+    max: 'Max Number'
   },
   gbutton: {
-    text: "Generuj"
+    text: 'Generate'
   },
   generate: {
     label: {
-      single: "Losowa liczba {mode} pomiędzy {hex}{minNumber} a {hex}{maxNumber} to:",
-      multiple: "Liczby losowe {numbers} w bazie {mode} między {hex}{minNumber} i {hex}{maxNumber} to:",
-      duplicate: "Niektóre liczby nie zostały wygenerowane, ponieważ były duplikatem",
-      previous: "Poprzednie cyfry"
+      single: 'The random number in base {mode} between {hex}{minNumber} and {hex}{maxNumber} is:',
+      multiple: 'The {numbers} random numbers in base {mode} between {hex}{minNumber} and {hex}{maxNumber} are:',
+      duplicate: 'Some numbers weren\'t generated because they were a duplicate',
+      previous: 'Previous Numbers'
     },
     buttons: {
-      another: "Generuj kolejne",
-      intervals: "Zmień przedziały"
+      another: 'Generate Another',
+      intervals: 'Change Intervals'
     }
   }
 };
