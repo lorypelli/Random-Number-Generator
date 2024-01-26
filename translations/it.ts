@@ -1,50 +1,50 @@
 export const translations = {
-    document: {
-        title: 'Generatore Numeri Casuali',
-        meta: {
-            description: 'Genera numeri casuali',
-            og: {
-                title: 'Generatore Numeri Casuali',
-                description: 'Genera numeri casuali'
-            }
-        }
-    },
-    theme: {
-        change: 'Cambia Tema'
-    },
-    error: {
-        generic: 'C\'è stato un errore'
-    },
-    numbers: {
-        amount: 'Ammonto Numeri'
-    },
-    mode: {
-        decimal: 'Decimale',
-        binary: 'Binario',
-        octal: 'Ottale',
-        hex: 'Esadecimale'
-    },
-    frequency: {
-        repeat: 'Ripeti',
-        no_repeat: 'Non Ripetere'
-    },
-    number: {
-        min: 'Numero Minimo',
-        max: 'Numero Massimo'
-    },
-    gbutton: {
-        text: 'Genera'
-    },
-    generate: {
-        label: {
-            single: 'Il numero casuale in base {mode} tra {hex}{minNumber} e {hex}{maxNumber} è:',
-            multiple: 'I {numbers} numeri casuali in base {mode} tra {hex}{minNumber} e {hex}{maxNumber} sono:',
-            duplicate: 'Alcuni numeri non sono stati generati perché sono duplicati',
-            previous: 'Numeri Precedenti'
-        },
-        buttons: {
-            another: 'Rigenera',
-            intervals: 'Cambia Intervalli'
-        }
+  document: {
+    title: 'Random Number Generator',
+    meta: {
+      description: 'Generate random numbers',
+      og: {
+        title: 'Random Number Generator',
+        description: 'Generate random numbers'
+      }
     }
+  },
+  theme: {
+    change: 'Change Theme'
+  },
+  error: {
+    generic: 'There was an error'
+  },
+  numbers: {
+    amount: 'Numbers Amount'
+  },
+  mode: {
+    decimal: 'Decimal',
+    binary: 'Binary',
+    octal: 'Octal',
+    hex: 'Hexadecimal'
+  },
+  frequency: {
+    repeat: 'Repeat',
+    no_repeat: 'No Repeat'
+  },
+  number: {
+    min: 'Min Number',
+    max: 'Max Number'
+  },
+  gbutton: {
+    text: 'Generate'
+  },
+  generate: {
+    label: {
+      single: 'The random number in base {mode} between {hex}{minNumber} and {hex}{maxNumber} is:',
+      multiple: 'The {numbers} random numbers in base {mode} between {hex}{minNumber} and {hex}{maxNumber} are:',
+      duplicate: 'Some numbers weren\'t generated because they were a duplicate',
+      previous: 'Previous Numbers'
+    },
+    buttons: {
+      another: 'Generate Another',
+      intervals: 'Change Intervals'
+    }
+  }
 };
