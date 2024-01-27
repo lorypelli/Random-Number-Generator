@@ -38,7 +38,7 @@ export const translations = {
     generate: {
         label: {
             single: 'Losowa liczba {mode} pomiędzy {hex}{minNumber} a {hex}{maxNumber} to:',
-            multiple: 'Liczby losowe {numbers} w bazie {mode} między {hex}{minNumber} i {hex}{maxNumber} to:',
+            multiple: '{numbers} losowe liczby w bazie {mode} pomiędzy {hex}{minNumber} a {hex}{maxNumber} to:',
             duplicate: 'Niektóre liczby nie zostały wygenerowane, ponieważ były duplikatem',
             previous: 'Poprzednie cyfry'
         },
