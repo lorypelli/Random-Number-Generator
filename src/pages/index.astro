@@ -1,8 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import '../styles/globals.css';
 ---
 
 <Layout>
+	<noscript>
+		<h1>Javascript is disabled but this website can be used even without it</h1>
+		<h1>Click <a href="/en">here</a> to view English version of the website</h1>
+	</noscript>
 	<script>
 		window.onload = () => {
 			window.location.replace(`/${localStorage.getItem('lang') || 'en'}/`);
