@@ -8,16 +8,8 @@ button {
     font-size: 35px;
 }
 
-select {
-    font-size: 25px;
-}
-
 #previousLabel {
     display: none;
-}
-
-#duplicate {
-    font-size: 25px;
 }
 
 #previous {

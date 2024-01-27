@@ -2,13 +2,13 @@
 import isValidLang from '../utils/isValidLang.ts';
 import t from '../utils/t.ts';
 let { lang } = Astro.params;
-if (!lang || !isValidLang(lang)) {
+if (!lang || !await isValidLang(lang)) {
 	lang = 'en';
 }
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,6 +34,10 @@ if (!lang || !isValidLang(lang)) {
 					--full-invert: #000000;
 				}
 
+				#fallback {
+					display: none;
+				}
+
 				#theme {
 					display: none;
 				}
@@ -43,6 +47,7 @@ if (!lang || !isValidLang(lang)) {
 				}
 			</style>
 		</noscript>
+		{(lang != Astro.params.lang) && <h1 id="fallback">Fallback to English because no language with that name was found or there was an error while identifying it...</h1>}
 		<button id="theme">{t(lang, 'theme.change')}</button>
 		<select id="lang">
 			<option data-short="en" selected={lang == 'en'}>English</option>

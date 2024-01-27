@@ -7,7 +7,7 @@ import isValidLang from '../../utils/isValidLang.ts';
 import t from '../../utils/t.ts';
 let { lang } = Astro.params;
 if (!lang || !await isValidLang(lang)) {
-	return Astro.redirect('/');
+	lang = 'en';
 }
 const error = Astro.url.searchParams.has('error');
 const min = Astro.url.searchParams.get('min');
