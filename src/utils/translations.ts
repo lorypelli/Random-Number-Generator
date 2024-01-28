@@ -2,7 +2,8 @@ import { translations as en } from '../../translations/en.ts';
 import { translations as it } from '../../translations/it.ts';
 import { translations as pl } from '../../translations/pl.ts';
 import { translations as mi } from '../../translations/mi.ts';
-export default function t(l: string, s: string, ...a: string[]) {
+import { readdirSync } from 'fs';
+export function t(l: string, s: string, ...a: string[]) {
     const arr = s.split('.');
     switch (l) {
     case 'en': {
@@ -94,4 +95,13 @@ export default function t(l: string, s: string, ...a: string[]) {
         return '';
     }
     }
+}
+export function isValidLang(l: string) {
+    const files = readdirSync('./translations');
+    for (let i = 0; i < files.length; i++) {
+        if (l == files[i].split('.')[0]) {
+            return true;
+        }
+    }
+    return false;
 }

@@ -3,8 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/globals.css';
 import '../../styles/randomNumber.css';
 import { z } from 'zod';
-import isValidLang from '../../utils/isValidLang.ts';
-import t from '../../utils/t.ts';
+import { t, isValidLang } from '../../utils/translations.ts'
 let { lang } = Astro.params;
 if (!lang || !isValidLang(lang)) {
 	lang = 'en';

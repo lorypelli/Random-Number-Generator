@@ -1,14 +1,10 @@
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel/serverless';
+import { readdirSync } from 'fs';
 export default defineConfig({
     output: 'server',
     adapter: vercel({
-        includeFiles: [
-            './translations/en.ts',
-            './translations/it.ts',
-            './translations/mi.ts',
-            './translations/pl.ts'
-        ]
+        includeFiles: readdirSync('./translations')
     }),
     server: {
         open: true,

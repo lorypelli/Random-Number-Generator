@@ -1,6 +1,5 @@
 ---
-import isValidLang from '../utils/isValidLang.ts';
-import t from '../utils/t.ts';
+import { t, isValidLang } from '../utils/translations.ts'
 let { lang } = Astro.params;
 if (!lang || !isValidLang(lang)) {
 	lang = 'en';
