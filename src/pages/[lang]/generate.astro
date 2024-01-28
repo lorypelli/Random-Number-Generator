@@ -6,7 +6,7 @@ import { z } from 'zod';
 import isValidLang from '../../utils/isValidLang.ts';
 import t from '../../utils/t.ts';
 let { lang } = Astro.params;
-if (!lang || !await isValidLang(lang)) {
+if (!lang || !isValidLang(lang)) {
 	lang = 'en';
 }
 const min = Astro.url.searchParams.get('min');

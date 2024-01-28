@@ -2,7 +2,7 @@
 import isValidLang from '../utils/isValidLang.ts';
 import t from '../utils/t.ts';
 let { lang } = Astro.params;
-if (!lang || !await isValidLang(lang)) {
+if (!lang || !isValidLang(lang)) {
 	lang = 'en';
 }
 ---
@@ -47,7 +47,7 @@ if (!lang || !await isValidLang(lang)) {
 				}
 			</style>
 		</noscript>
-		{(lang != Astro.params.lang) && <h1 id="fallback">Fallback to English because no language with that name was found or there was an error while identifying it...</h1>}
+		{(lang != Astro.params.lang) && <h1 id="fallback">Fallback to English because no language with that name was found</h1>}
 		<button id="theme">{t(lang, 'theme.change')}</button>
 		<select id="lang">
 			<option data-short="en" selected={lang == 'en'}>English</option>
@@ -90,7 +90,7 @@ if (!lang || !await isValidLang(lang)) {
 								const path = window.location.pathname.split('/')[2];
 								const params = window.location.search;
 								window.location.replace(
-									`/${lang}/${path ? path : ''}${params != '' ? params : ''}`,
+									`/${lang}/${path}${params}`,
 								);
 								localStorage.setItem('lang', lang);
 							}
