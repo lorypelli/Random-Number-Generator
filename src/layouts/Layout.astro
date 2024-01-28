@@ -1,5 +1,5 @@
 ---
-import { t, isValidLang } from '../utils/translations.ts'
+import { t, isValidLang } from '../utils/translations.ts';
 let { lang } = Astro.params;
 if (!lang || !isValidLang(lang)) {
 	lang = 'en';
@@ -40,7 +40,13 @@ if (!lang || !isValidLang(lang)) {
 				}
 			</style>
 		</noscript>
-		{(lang != Astro.params.lang) && <h1 id="fallback">Fallback to English because no language with that name was found</h1>}
+		{
+			lang != Astro.params.lang && (
+				<h1 id="fallback">
+					Fallback to English because no language with that name was found
+				</h1>
+			)
+		}
 		<button id="theme">{t(lang, 'theme.change')}</button>
 		<select id="lang">
 			<option data-short="en" selected={lang == 'en'}>English</option>
@@ -64,12 +70,17 @@ if (!lang || !isValidLang(lang)) {
 					if (theme != 'light' && theme != 'dark') {
 						theme = 'light';
 					}
-					if (theme == 'dark') {
-						localStorage.setItem('theme', 'light');
-						html.setAttribute('theme', 'light');
-					} else if (theme == 'light') {
-						localStorage.setItem('theme', 'dark');
-						html.setAttribute('theme', 'dark');
+					switch (theme) {
+						case 'light': {
+							localStorage.setItem('theme', 'dark');
+							html.setAttribute('data-theme', 'dark');
+							break;
+						}
+						case 'dark': {
+							localStorage.setItem('theme', 'light');
+							html.setAttribute('data-theme', 'light');
+							break;
+						}
 					}
 				});
 			}
@@ -82,9 +93,7 @@ if (!lang || !isValidLang(lang)) {
 							if (lang) {
 								const path = window.location.pathname.split('/')[2];
 								const params = window.location.search;
-								window.location.replace(
-									`/${lang}/${path}${params}`,
-								);
+								window.location.replace(`/${lang}/${path}${params}`);
 								localStorage.setItem('lang', lang);
 							}
 						}
