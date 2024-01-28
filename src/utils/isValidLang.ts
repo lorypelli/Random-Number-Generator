@@ -1,6 +1,6 @@
-import fs from 'fs';
+import { readdirSync } from 'fs';
 export default function isValidLang(l: string) {
-    const files = fs.readdirSync('./translations');
+    const files = readdirSync('./translations');
     for (let i = 0; i < files.length; i++) {
         if (l == files[i].split('.')[0]) {
             return true;
