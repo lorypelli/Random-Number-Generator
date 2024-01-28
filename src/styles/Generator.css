@@ -12,6 +12,7 @@ form {
     width: 600px;
     height: 320px;
     border-radius: 25px;
+    box-shadow: 5px 5px 5px var(--invert-color);
 }
 
 #numbers {
