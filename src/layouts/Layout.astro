@@ -7,7 +7,7 @@ if (!lang || !isValidLang(lang)) {
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} data-theme="light">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,12 +27,6 @@ if (!lang || !isValidLang(lang)) {
 	<body>
 		<noscript>
 			<style>
-				:root {
-					--background-color: #e7e5e4;
-					--invert-color: #181a1b;
-					--full-invert: #000000;
-				}
-
 				#fallback {
 					display: none;
 				}
@@ -62,7 +56,7 @@ if (!lang || !isValidLang(lang)) {
 				theme = 'light';
 			}
 			localStorage.setItem('theme', theme);
-			html.setAttribute('theme', theme);
+			html.setAttribute('data-theme', theme);
 			const themeElement = document.getElementById('theme');
 			if (themeElement) {
 				themeElement.addEventListener('click', () => {

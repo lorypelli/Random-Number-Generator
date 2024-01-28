@@ -1,10 +1,10 @@
-[theme='light'] {
+[data-theme='light'] {
     --background-color: #E7E5E4;
     --invert-color: #181A1B;
     --full-invert: #000000;
 }
 
-[theme='dark'] {
+[data-theme='dark'] {
     --background-color: #181A1B;
     --invert-color: #E7E5E4;
     --full-invert: #FFFFFF;
