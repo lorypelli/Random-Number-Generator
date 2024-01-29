@@ -39,7 +39,7 @@ if (
 	!isModeValid.safeParse(mode).success ||
 	!isFrequencyValid.safeParse(frequency).success
 ) {
-	return Astro.redirect(`/${lang}/?error`);
+	return Astro.redirect(`/${lang}?error`);
 }
 for (let i = 0; i < isNumbersValid.data; i++) {
 	const number = Math.floor(

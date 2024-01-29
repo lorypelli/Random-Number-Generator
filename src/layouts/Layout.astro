@@ -93,7 +93,7 @@ if (!lang || !isValidLang(lang)) {
 							if (lang) {
 								const path = window.location.pathname.split('/')[2];
 								const params = window.location.search;
-								window.location.replace(`/${lang}/${path}${params}`);
+								window.location.replace(`/${lang}${path ?  '/' + path : ''}${params}`);
 								localStorage.setItem('lang', lang);
 							}
 						}
