@@ -21,17 +21,13 @@ if (!lang || !isValidLang(lang)) {
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@600&display=swap"
 		/>
+		<noscript>
+			<link rel="stylesheet" href="/noscript.css" />
+		</noscript>
 		<link rel="favicon" href="./favicon.ico" />
 		<title>{t(lang, 'document.title')}</title>
 	</head>
 	<body>
-		<noscript>
-			<style>
-				#fallback, #theme, #lang {
-					display: none;
-				}
-			</style>
-		</noscript>
 		{
 			lang != Astro.params.lang && (
 				<h1 id="fallback">
@@ -85,7 +81,9 @@ if (!lang || !isValidLang(lang)) {
 							if (lang) {
 								const path = window.location.pathname.split('/')[2];
 								const params = window.location.search;
-								window.location.replace(`/${lang}${path ?  '/' + path : ''}${params}`);
+								window.location.replace(
+									`/${lang}${path ? '/' + path : ''}${params}`,
+								);
 								localStorage.setItem('lang', lang);
 							}
 						}
