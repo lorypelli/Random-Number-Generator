@@ -45,8 +45,6 @@ button {
 }
 
 select {
-    display: inline;
-    margin: 0 auto;
     margin-bottom: 15px;
     background-color: var(--background-color);
     width: 280px;

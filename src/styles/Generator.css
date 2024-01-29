@@ -8,7 +8,6 @@ form {
     display: flex;
     align-items: center;
     border: 5px solid;
-    text-align: center;
     width: 600px;
     height: 320px;
     border-radius: 25px;
@@ -25,7 +24,6 @@ input {
     height: 50px;
     border: 5px solid;
     background-color: var(--background-color);
-    text-align: center;
     border-radius: 25px;
     font-size: 20px;
     box-shadow: 5px 5px 5px var(--invert-color);
