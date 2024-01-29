@@ -44,7 +44,7 @@ if (min && max) {
 ---
 
 <Layout>
-	{error && <h1 id="error">There was an error</h1>}
+	{error && <h1 id="error">{t(lang, 'error.generic')}</h1>}
 	<div id="top">
 		<form action=`/${lang}/generate`>
 			<input
