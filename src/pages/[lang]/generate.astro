@@ -11,7 +11,7 @@ if (!lang || !isValidLang(lang)) {
 const min = Astro.url.searchParams.get('min');
 const max = Astro.url.searchParams.get('max');
 if (!min || !max) {
-	return Astro.redirect('/?error');
+	return Astro.redirect(`/${lang}/?error`);
 }
 const mode = Astro.url.searchParams.get('mode') || '10';
 const frequency = Astro.url.searchParams.get('frequency') || 'repeat';
@@ -39,7 +39,7 @@ if (
 	!isModeValid.safeParse(mode).success ||
 	!isFrequencyValid.safeParse(frequency).success
 ) {
-	return Astro.redirect('/?error');
+	return Astro.redirect(`/${lang}/?error`);
 }
 for (let i = 0; i < isNumbersValid.data; i++) {
 	const number = Math.floor(

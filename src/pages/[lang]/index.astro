@@ -37,7 +37,7 @@ if (min && max) {
 		isFrequencyValid.safeParse(frequency).success
 	) {
 		return Astro.redirect(
-			`/generate?numbers=${numbers}&mode=${mode}&frequency=${frequency}&min=${min}&max=${max}`,
+			`/${lang}/generate?numbers=${numbers}&mode=${mode}&frequency=${frequency}&min=${min}&max=${max}`,
 		);
 	}
 }
