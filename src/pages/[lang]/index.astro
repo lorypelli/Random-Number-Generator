@@ -3,10 +3,10 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/globals.css';
 import '../../styles/Generator.css';
 import { z } from 'zod';
-import { t, isValidLang } from '../../utils/translations.ts'
+import { t, isValidLang } from '../../utils/translations.ts';
 let { lang } = Astro.params;
 while (!lang || !isValidLang(lang)) {
-	lang = 'en'
+	lang = 'en';
 }
 const error = Astro.url.searchParams.has('error');
 const min = Astro.url.searchParams.get('min');
