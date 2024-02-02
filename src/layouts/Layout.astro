@@ -1,7 +1,7 @@
 ---
 import { t, isValidLang } from '../utils/translations.ts';
 let { lang } = Astro.params;
-if (!lang || !isValidLang(lang)) {
+while (!lang || !isValidLang(lang)) {
 	lang = 'en';
 }
 ---

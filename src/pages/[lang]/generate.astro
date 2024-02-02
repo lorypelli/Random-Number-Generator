@@ -5,8 +5,8 @@ import '../../styles/randomNumber.css';
 import { z } from 'zod';
 import { t, isValidLang } from '../../utils/translations.ts'
 let { lang } = Astro.params;
-if (!lang || !isValidLang(lang)) {
-	lang = 'en';
+while (!lang || !isValidLang(lang)) {
+	lang = 'en'
 }
 const min = Astro.url.searchParams.get('min');
 const max = Astro.url.searchParams.get('max');
