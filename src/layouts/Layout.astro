@@ -1,7 +1,7 @@
 ---
-import { t, isValidLang } from '../utils/translations.ts';
+import { translate } from '../utils/translations.ts';
 let { lang } = Astro.params;
-while (!lang || !isValidLang(lang)) {
+while (!lang || !translate.isValidLang(lang)) {
 	lang = 'en';
 }
 ---
@@ -11,11 +11,11 @@ while (!lang || !isValidLang(lang)) {
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content={t(lang, 'document.meta.description')} />
-		<meta name="og:title" content={t(lang, 'document.meta.og.title')} />
+		<meta name="description" content={translate.t(lang, 'document.meta.description')} />
+		<meta name="og:title" content={translate.t(lang, 'document.meta.og.title')} />
 		<meta
 			name="og:description"
-			content={t(lang, 'document.meta.og.description')}
+			content={translate.t(lang, 'document.meta.og.description')}
 		/>
 		<link
 			rel="stylesheet"
@@ -25,7 +25,7 @@ while (!lang || !isValidLang(lang)) {
 			<link rel="stylesheet" href="/noscript.css" />
 		</noscript>
 		<link rel="favicon" href="./favicon.ico" />
-		<title>{t(lang, 'document.title')}</title>
+		<title>{translate.t(lang, 'document.title')}</title>
 	</head>
 	<body>
 		{
@@ -35,7 +35,7 @@ while (!lang || !isValidLang(lang)) {
 				</h1>
 			)
 		}
-		<button id="theme">{t(lang, 'theme.change')}</button>
+		<button id="theme">{translate.t(lang, 'theme.change')}</button>
 		<select id="lang">
 			<option data-short="en" selected={lang == 'en'}>English</option>
 			<option data-short="it" selected={lang == 'it'}>Italiano</option>
