@@ -3,9 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/globals.css';
 import '../../styles/randomNumber.css';
 import { z } from 'zod';
-import { t, isValidLang } from '../../utils/translations.ts'
+import { translate } from '../../utils/translations.ts';
 let { lang } = Astro.params;
-if (!lang || !isValidLang(lang)) {
+while (!lang || !translate.isValidLang(lang)) {
 	lang = 'en';
 }
 const min = Astro.url.searchParams.get('min');
@@ -61,9 +61,11 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 <Layout>
 	{
 		randomNumber.length > 1 ? (
-			<h1>{t(lang, 'generate.label.multiple', numbers, mode, hex, min, hex, max)}</h1>
+			<h1>
+				{translate.t(lang, 'generate.label.multiple', numbers, mode, hex, min, hex, max)}
+			</h1>
 		) : (
-			<h1>{t(lang, 'generate.label.single', mode, hex, min, hex, max)}</h1>
+			<h1>{translate.t(lang, 'generate.label.single', mode, hex, min, hex, max)}</h1>
 		)
 	}
 	<h1>
@@ -71,7 +73,7 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 	</h1>
 	{
 		randomNumber.length < parseInt(numbers) ? (
-			<h1 id="duplicate">{t(lang, 'generate.label.duplicate')}</h1>
+			<h1 id="duplicate">{translate.t(lang, 'generate.label.duplicate')}</h1>
 		) : (
 			<h1 id="duplicate" />
 		)
@@ -80,7 +82,7 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 		<noscript>
 			<a
 				href=`/${lang}/generate?numbers=${numbers}&mode=${mode}&frequency=${frequency}&min=${min}&max=${max}`
-				><button>{t(lang, 'generate.buttons.another')}</button></a
+				><button>{translate.t(lang, 'generate.buttons.another')}</button></a
 			>
 			<style>
 				#another {
@@ -88,12 +90,12 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 				}
 			</style>
 		</noscript>
-		<button id="another">{t(lang, 'generate.buttons.another')}</button>
+		<button id="another">{translate.t(lang, 'generate.buttons.another')}</button>
 		<a href=`/${lang}/?numbers=${numbers}&mode=${mode}&frequency=${frequency}`
-			><button>{t(lang, 'generate.buttons.intervals')}</button></a
+			><button>{translate.t(lang, 'generate.buttons.intervals')}</button></a
 		>
 	</div>
-	<h1 id="previousLabel">{t(lang, 'generate.label.previous')}</h1>
+	<h1 id="previousLabel">{translate.t(lang, 'generate.label.previous')}</h1>
 	<h1 id="previous"></h1>
 	<script>
 		const anotherElement = document.getElementById('another');
