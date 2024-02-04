@@ -11,8 +11,14 @@ while (!lang || !translate.isValidLang(lang)) {
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content={translate.t(lang, 'document.meta.description')} />
-		<meta name="og:title" content={translate.t(lang, 'document.meta.og.title')} />
+		<meta
+			name="description"
+			content={translate.t(lang, 'document.meta.description')}
+		/>
+		<meta
+			name="og:title"
+			content={translate.t(lang, 'document.meta.og.title')}
+		/>
 		<meta
 			name="og:description"
 			content={translate.t(lang, 'document.meta.og.description')}
