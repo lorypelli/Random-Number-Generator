@@ -56,33 +56,24 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 		randomNumber.push(number);
 	}
 }
+const label = randomNumber.length > 1 ? 'multiple' : 'single';
 ---
 
 <Layout>
-	{
-		randomNumber.length > 1 && (
-			<h1>
-				{translate.t(
-					lang,
-					'generate.label.multiple',
-					numbers,
-					mode,
-					hex,
-					min,
-					hex,
-					max,
-				)}
-			</h1>
-		)
-	}
-	{
-		randomNumber.length < 1 ||
-			(randomNumber.length == 1 && (
-				<h1>
-					{translate.t(lang, 'generate.label.single', mode, hex, min, hex, max)}
-				</h1>
-			))
-	}
+	<h1>
+		{
+			translate.t(
+				lang,
+				`generate.label.${label}`,
+				label == 'multiple' ? numbers : null,
+				mode,
+				hex,
+				min,
+				hex,
+				max,
+			)
+		}
+	</h1>
 	<h1>
 		{hex}<span id="number">{randomNumber.join(' | ')}</span>
 	</h1>

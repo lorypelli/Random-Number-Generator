@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/vercel": "^7.1.1",
     "astro": "^4.3.2",
-    "trslate": "^1.1.8"
+    "trslate": "^1.1.10"
   },
   "devDependencies": {
     "@types/node": "^20.11.16",
