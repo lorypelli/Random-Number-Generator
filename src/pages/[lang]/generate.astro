@@ -60,7 +60,7 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 
 <Layout>
 	{
-		randomNumber.length > 1 ? (
+		randomNumber.length > 1 && (
 			<h1>
 				{translate.t(
 					lang,
@@ -73,20 +73,22 @@ for (let i = 0; i < isNumbersValid.data; i++) {
 					max,
 				)}
 			</h1>
-		) : (
-			<h1>
-				{translate.t(lang, 'generate.label.single', mode, hex, min, hex, max)}
-			</h1>
 		)
+	}
+	{
+		randomNumber.length < 1 ||
+			(randomNumber.length == 1 && (
+				<h1>
+					{translate.t(lang, 'generate.label.single', mode, hex, min, hex, max)}
+				</h1>
+			))
 	}
 	<h1>
 		{hex}<span id="number">{randomNumber.join(' | ')}</span>
 	</h1>
 	{
-		randomNumber.length < parseInt(numbers) ? (
+		randomNumber.length < parseInt(numbers) && (
 			<h1 id="duplicate">{translate.t(lang, 'generate.label.duplicate')}</h1>
-		) : (
-			<h1 id="duplicate" />
 		)
 	}
 	<div id="buttons">
