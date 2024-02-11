@@ -35,7 +35,7 @@ while (!lang || !translate.isValidLang(lang)) {
 	</head>
 	<body>
 		{
-			lang != Astro.params.lang && (
+			Astro.params.lang && lang != Astro.params.lang && (
 				<h1 id="fallback">
 					Fallback to English because no language with that name was found
 				</h1>
