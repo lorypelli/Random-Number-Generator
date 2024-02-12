@@ -1,9 +1,9 @@
-const anotherElement = document.getElementById('another');
-const previousElement = document.getElementById('previous');
+const anotherElement = document.querySelector('#another');
+const previousElement = document.querySelector('#previous');
 const oldNumbers: string[] = [];
 if (anotherElement) {
     anotherElement.addEventListener('click', () => {
-        const number = document.getElementById('number');
+        const number = document.querySelector('#number');
         const randomNumber: string[] = [];
         if (number) {
             const nums = number.innerHTML.split(' | ');
@@ -34,7 +34,7 @@ if (anotherElement) {
                 }
             }
             number.innerHTML = randomNumber.join(' | ');
-            const duplicate = document.getElementById('duplicate');
+            const duplicate = document.querySelector('#duplicate');
             if (duplicate) {
                 duplicate.innerHTML =
                     randomNumber.length < parseInt(numbers)
@@ -42,9 +42,9 @@ if (anotherElement) {
                         : '';
             }
             if (previousElement) {
-                const previousLabel = document.getElementById('previousLabel');
+                const previousLabel = document.querySelector('#previousElement');
                 if (previousLabel) {
-                    previousLabel.style.display = 'block';
+                    (previousLabel as HTMLElement).style.display = 'block';
                 }
                 previousElement.innerHTML = oldNumbers.join(', ');
             }

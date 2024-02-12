@@ -1,11 +1,17 @@
 let theme = localStorage.getItem('theme');
-const html = document.getElementsByTagName('html')[0];
+const html = document.querySelector('html');
+const meta = document.querySelector('meta[name=\'color-scheme\']');
 if (theme != 'light' && theme != 'dark') {
     theme = 'light';
 }
 localStorage.setItem('theme', theme);
-html.setAttribute('data-theme', theme);
-const themeElement = document.getElementById('theme');
+if (html) {
+    html.setAttribute('data-theme', theme);
+}
+if (meta) {
+    meta.setAttribute('content', theme);
+}
+const themeElement = document.querySelector('#theme');
 if (themeElement) {
     themeElement.addEventListener('click', () => {
         let theme = localStorage.getItem('theme');
@@ -15,18 +21,22 @@ if (themeElement) {
         switch (theme) {
         case 'light': {
             localStorage.setItem('theme', 'dark');
-            html.setAttribute('data-theme', 'dark');
+            if (html) {
+                html.setAttribute('data-theme', 'dark');
+            }
             break;
         }
         case 'dark': {
             localStorage.setItem('theme', 'light');
-            html.setAttribute('data-theme', 'light');
+            if (html) {
+                html.setAttribute('data-theme', 'light');
+            }
             break;
         }
         }
     });
 }
-const langElement = document.getElementById('lang');
+const langElement = document.querySelector('#lang');
 if (langElement) {
     langElement.addEventListener('change', () => {
         for (let i = 0; i < langElement.children.length; i++) {

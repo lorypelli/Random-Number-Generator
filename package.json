@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^7.3.0",
-    "astro": "^4.3.5",
+    "astro": "^4.3.6",
     "trslate": "^1.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.16",
+    "@types/node": "^20.11.17",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.56.0",
