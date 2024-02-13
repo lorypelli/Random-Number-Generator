@@ -24,12 +24,18 @@ if (themeElement) {
             if (html) {
                 html.setAttribute('data-theme', 'dark');
             }
+            if (meta) {
+                meta.setAttribute('content', 'dark');
+            }
             break;
         }
         case 'dark': {
             localStorage.setItem('theme', 'light');
             if (html) {
                 html.setAttribute('data-theme', 'light');
+            }
+            if (meta) {
+                meta.setAttribute('content', 'light');
             }
             break;
         }
