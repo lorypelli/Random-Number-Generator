@@ -12,8 +12,8 @@ dependencies:
     specifier: ^4.4.9
     version: 4.4.9(@types/node@20.11.24)(typescript@5.3.3)
   trslate:
-    specifier: ^1.3.2
-    version: 1.3.2
+    specifier: ^1.3.3
+    version: 1.3.3
 
 devDependencies:
   '@types/node':
@@ -3933,8 +3933,8 @@ packages:
     resolution: {integrity: sha512-tmMpK00BjZiUyVyvrBK7knerNgmgvcV/KLVyuma/SC+TQN167GrMRciANTz09+k3zW8L8t60jWO1GpfkZdjTaw==}
     dev: false
 
-  /trslate@1.3.2:
-    resolution: {integrity: sha512-ekgjC2qsZ6nvVSnWDnCgQkzc9EXhWOWlOmfJvBv/d3fyR8V3Gs5o9E+B2v2rfH0OBf4zx0dnBk/mB5WKCNX/Fg==}
+  /trslate@1.3.3:
+    resolution: {integrity: sha512-fVh0AjHKIL+En7HRsbOR8k2karArNtrNNL6Z7JJZZgTjXasiKIi3g969G/s7XEig2lKwTn9Vseg9DHzkiSLg4w==}
     dev: false
 
   /ts-api-utils@1.2.1(typescript@5.3.3):
