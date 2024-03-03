@@ -4,6 +4,7 @@ let { lang } = Astro.params;
 while (!lang || !translate.isValidLang(lang)) {
 	lang = 'en';
 }
+const t = translate.useLang(lang)
 ---
 
 <!doctype html>
@@ -13,15 +14,15 @@ while (!lang || !translate.isValidLang(lang)) {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta
 			name="description"
-			content={translate.t(lang, 'document.meta.description')}
+			content={t('document.meta.description')}
 		/>
 		<meta
 			name="og:title"
-			content={translate.t(lang, 'document.meta.og.title')}
+			content={t('document.meta.og.title')}
 		/>
 		<meta
 			name="og:description"
-			content={translate.t(lang, 'document.meta.og.description')}
+			content={t('document.meta.og.description')}
 		/>
 		<meta name="color-scheme" content="light" />
 		<link
@@ -32,7 +33,7 @@ while (!lang || !translate.isValidLang(lang)) {
 			<link rel="stylesheet" href="/noscript.css" />
 		</noscript>
 		<link rel="favicon" href="./favicon.ico" />
-		<title>{translate.t(lang, 'document.title')}</title>
+		<title>{t('document.title')}</title>
 	</head>
 	<body>
 		{
@@ -42,7 +43,7 @@ while (!lang || !translate.isValidLang(lang)) {
 				</h1>
 			)
 		}
-		<button id="theme">{translate.t(lang, 'theme.change')}</button>
+		<button id="theme">{t('theme.change')}</button>
 		<select id="lang">
 			<option data-short="en" selected={lang == 'en'}>English</option>
 			<option data-short="it" selected={lang == 'it'}>Italiano</option>
