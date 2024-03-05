@@ -6,7 +6,7 @@ if (theme != 'light' && theme != 'dark') {
 }
 localStorage.setItem('theme', theme);
 if (html) {
-    html.setAttribute('data-theme', theme);
+    html.dataset.theme = theme;
 }
 if (meta) {
     meta.setAttribute('content', theme);
@@ -22,7 +22,7 @@ if (themeElement) {
         case 'light': {
             localStorage.setItem('theme', 'dark');
             if (html) {
-                html.setAttribute('data-theme', 'dark');
+                html.dataset.theme = 'dark';
             }
             if (meta) {
                 meta.setAttribute('content', 'dark');
@@ -32,7 +32,7 @@ if (themeElement) {
         case 'dark': {
             localStorage.setItem('theme', 'light');
             if (html) {
-                html.setAttribute('data-theme', 'light');
+                html.dataset.theme = 'light';
             }
             if (meta) {
                 meta.setAttribute('content', 'light');
