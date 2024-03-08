@@ -42,7 +42,7 @@ if (anotherElement) {
                         : '';
             }
             if (previousElement) {
-                const previousLabel = document.querySelector('#previousElement');
+                const previousLabel = document.querySelector('#previousLabel');
                 if (previousLabel) {
                     (previousLabel as HTMLElement).style.display = 'block';
                 }
