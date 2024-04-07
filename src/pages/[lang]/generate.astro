@@ -44,16 +44,16 @@ if (
 }
 for (let i = 0; i < isNumbersValid.data; i++) {
 	const number = Math.floor(
-		Math.random() * (isMaxValid.data - isMinValid.data + 1) + isMinValid.data,
+		Math.random() * (isMaxValid.data - isMinValid.data + 1) +
+			isMinValid.data,
 	)
 		.toString(parseInt(mode))
 		.toUpperCase();
 	if (
-		frequency == isFrequencyValid.Values['no-repeat'] &&
-		!randomNumber.includes(number)
+		(frequency == isFrequencyValid.Values['no-repeat'] &&
+			!randomNumber.includes(number)) ||
+		frequency == isFrequencyValid.Values['repeat']
 	) {
-		randomNumber.push(number);
-	} else if (frequency == isFrequencyValid.Values['repeat']) {
 		randomNumber.push(number);
 	}
 }
@@ -95,7 +95,8 @@ const label = randomNumber.length > 1 ? 'multiple' : 'single';
 			</style>
 		</noscript>
 		<button id="another">{t('generate.buttons.another')}</button>
-		<a href=`/${lang}/?numbers=${numbers}&mode=${mode}&frequency=${frequency}`
+		<a
+			href=`/${lang}/?numbers=${numbers}&mode=${mode}&frequency=${frequency}`
 			><button>{t('generate.buttons.intervals')}</button></a
 		>
 	</div>
